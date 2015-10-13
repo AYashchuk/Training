@@ -1,0 +1,42 @@
+1. Написать собственную реализацию класса Scanner, класс MyScanner, работающую с символьными потоками.
+Создать два конструктора в один передается объект по ссылке Reader, во второй String.
+
+Реализовать методы:
+
+   String next() - чтение одного слова в строке
+   int nextInt() - чтение целого числа из строки или InputMismatchException
+   String nextLine() - чтение всей строки
+   boolean hasNext() - определение наличия в потоке данных
+   boolean hasNextInt() - определение наличия в потоке целого int числа
+   useDelimiter(char) - использует разделитель
+   close() - закрытие сканнера, теперь нельзя использовать и NoSuchElementException
+2. Написать собственную реализацию динамического массива MyArrayList,
+содержащего целые числа. Реализовать следующие методы
+- void add(int value)
+- int get(int index)
+- boolean set(int index, int value)
+- boolean add(int index, int value)
+- int indexOf(int value)
+- int size()
+- boolean remove(int index)
+ Написать собственную реализацию динамического массива MyArrayList.
+ Сделать параметризацию списка, параметр E.
+ Реализовать в списке интерфейсы Iterable.
+ Реализовать следующие методы
+ - void add(E value)
+ - int get(int index)
+ - boolean set(int index, E value)
+ - boolean add(int index, E value)
+ - int indexOf(E value)
+ - int size()
+ - E remove(int index)
+ - Iterator<E> iterator()
+4.  Написать приложение "Рабочее место кассира в супермаркете", класс Cashier. Оформить всё в виде одного класса.
+ Реализовать следующие функции приложения в виде консольного меню:
+ Авторизация по имени и паролю, метод boolean isAuthorized(String login, String password).
+ Показать меню, метод void showMenu()
+ Создать покупку, метод void createPurchase()
+ Добавить в покупку товар по штрихкоду, указать кол-во единиц покупаемого товара, метод void addGoods(String barCode, int count)
+ Убрать из покупки товар по штрихкоду, указать кол-во единиц покупаемого товара, метод void removeGoods(String barCode, int count)
+ Отменить покупку, метод void cancelPurchase().
+ Завершить покупку, на экран выводится общаяя сумма покупки, метод double closePurchase()
