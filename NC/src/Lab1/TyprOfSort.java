@@ -2,6 +2,8 @@ package Lab1;
 
 public enum TyprOfSort {
 	BUBBLE,
-	QUICK,
+	EXCHANGE,
+	MERG,
+	RECURSIVE,
 	ARRAYS;
 }

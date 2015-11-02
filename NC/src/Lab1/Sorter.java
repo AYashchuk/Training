@@ -1,7 +1,6 @@
 package Lab1;
 
-import Lab1.domain.ArraySort;
-import Lab1.domain.BubbleSort;
+import Lab1.domain.*;
 
 public class Sorter <SortType>{
 	private Enum typeOfSort;
@@ -12,12 +11,16 @@ public class Sorter <SortType>{
 	}
 
 	private void createSort(){
-		if(typeOfSort==TyprOfSort.BUBBLE){
+		if(typeOfSort == TyprOfSort.BUBBLE){
 			sorter = new BubbleSort();
-		}if(typeOfSort==TyprOfSort.ARRAYS){
+		}if(typeOfSort == TyprOfSort.ARRAYS){
 			sorter = new ArraySort();
-		}if(typeOfSort==TyprOfSort.QUICK){
-			//sorter = new ();
+		}if(typeOfSort == TyprOfSort.EXCHANGE){
+			sorter = new ExchangeSort();
+		}if(typeOfSort == TyprOfSort.MERG){
+			sorter = new MergSsort();
+		}if(typeOfSort == TyprOfSort.RECURSIVE){
+			sorter = new RecursiveSort();
 		}
 	}
 
