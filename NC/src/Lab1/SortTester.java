@@ -1,5 +1,6 @@
 package Lab1;
 
+import Lab1.domain.BubbleSort;
 import Lab1.service.Generator;
 import Lab1.service.Printer;
 
@@ -17,7 +18,12 @@ public class SortTester {
 	    printer.print(array);
 	    Sorter sorter = new Sorter(TyprOfSort.ARRAYS);
 	    sorter.makeSort(array);
-	    System.out.println("\nafter sort:");
+	    System.out.println("\nafter Arrays.sort():");
+	    printer.print(array);
+	    generator.generate(array);
+	    System.out.println("\nafter Bubble recursive sort:");
+	    BubbleSort bubbleSort = new BubbleSort();
+	    bubbleSort.reverseSort(array);
 	    printer.print(array);
 	    System.out.println("\n\n\n");
 

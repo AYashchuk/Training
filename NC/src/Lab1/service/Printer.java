@@ -1,5 +1,7 @@
 package Lab1.service;
 
+import java.util.Arrays;
+
 public class Printer {
 	public Printer() {
 	}
@@ -9,4 +11,8 @@ public class Printer {
             System.out.print(array[i]+" ");
         }
     }
+
+	public void toStringArray(int array[]){
+		Arrays.toString(array);
+	}
 }
