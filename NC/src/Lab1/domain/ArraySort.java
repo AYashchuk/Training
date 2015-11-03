@@ -5,6 +5,9 @@ import Lab1.Sort;
 import java.util.Arrays;
 
 public class ArraySort extends Sort{
+	public ArraySort() {
+	}
+
 	@Override
 	public void sort(int[] array) {
 		Arrays.sort(array);
