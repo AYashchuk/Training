@@ -1,11 +1,10 @@
 package Lab1.domain;
 
-import Lab1.Sort;
-
 import java.util.Arrays;
 
-public class MergSsort extends Sort{
-	public MergSsort() {
+public class MergeSsort extends Sort {
+	public MergeSsort() {
+		this.nameOfSort = "Using method Merge sort";
 	}
 
 	private int[] merge(int[] arr_1, int[] arr_2) {
@@ -26,7 +25,7 @@ public class MergSsort extends Sort{
 	}
 
 	@Override
-	public void sort(int[] array) {
+	protected void sorting(int[] array) {
 		int len = array.length;
 		int n = 1; // кратность сравнений (сравнивать по 1-му елем., 2-м ...)
 		int shift; // сдвиг в перебираемом массиве

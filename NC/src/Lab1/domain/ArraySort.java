@@ -1,15 +1,14 @@
 package Lab1.domain;
 
-import Lab1.Sort;
-
 import java.util.Arrays;
 
-public class ArraySort extends Sort{
+public class ArraySort extends Sort {
 	public ArraySort() {
+		this.nameOfSort = "Using method Arrays.sort(); ";
 	}
 
 	@Override
-	public void sort(int[] array) {
+	protected void sorting(int[] array) {
 		Arrays.sort(array);
 	}
 }

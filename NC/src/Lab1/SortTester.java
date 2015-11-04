@@ -1,288 +1,124 @@
 package Lab1;
 
-import Lab1.domain.BubbleSort;
-import Lab1.service.Generator;
-import Lab1.service.Printer;
+import Lab1.service.generator.*;
+import Lab1.service.printer.Printer;
+import Lab1.service.sorterCreator.MySort;
+import Lab1.service.sorterCreator.SorterCreator;
+import Lab1.testing.MainTest;
+import Lab1.testing.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SortTester {
+	private static MainTest [] mainTests = new MainTest[4];
+	private  static int length = 20;
+	private static List<MainTest> testsGener1 = new ArrayList<>();
+	private static List<MainTest> testsGener2 = new ArrayList<>();
+	private static List<MainTest> testsGener3 = new ArrayList<>();
+	private static List<MainTest> testsGener4 = new ArrayList<>();
+	static Printer printer = new Printer();
+
+	static Generator randomGenerator = new MyGenerator(new GenRandomArrat());
+	static Generator reversSortGenerator = new MyGenerator(new GenReversSortArray());
+	static Generator reversSortWithoutLastElemenrGenerator = new MyGenerator(new GenSoertArrayWithoutLastElement());
+	static Generator sortGenerator = new MyGenerator(new GenSortArray());
+	static SorterCreator sorterCreator = new MySort();
+
     public static void main(String[] args) {
-	    int length = 20;
-	    Generator generator = new Generator(length*5);
-	    Printer printer = new Printer();
-	    Sorter sorter;
-	    int [] array = new int[length];
 
+	    basicTask();
 
-
-
-	    System.out.println("Test 1 (array had bean sorted)________________________________________\n\n");
-	    generator.generate(array, 0);
-	    System.out.println("1) Arrays.sort():");
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.ARRAYS);
-	    long start = System.nanoTime();
-	    sorter.makeSort(array);
-	    long time = System.nanoTime() - start;
-	    System.out.println("\nSorted time: "+ time + " nano s.");
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-
-	    System.out.println("2) Bubble sort");
-	    System.out.println("before:");
-	    generator.generate(array, 0);
-	    printer.print(array);
-	    System.out.println("\nafter Bubble revers sort:");
-	    BubbleSort bubbleSort = new BubbleSort();
-	    start = System.nanoTime();
-	    bubbleSort.reverseSort(array);
-	    time = System.nanoTime() - start;
-	    System.out.println("\nSorted time: " + time + " nano s.");
-	    printer.print(array);
-	    generator.generate(array, 0);
-	    System.out.println("\nbefore:");
-	    printer.print(array);
-	    System.out.println("\nafter Bubble classic sort:");
-	    sorter = new Sorter(TyprOfSort.BUBBLE);
-	    sorter.makeSort(array);
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("3) Recursive sort");
-	    generator.generate(array, 0);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.RECURSIVE);
-	    start = System.nanoTime();
-	    sorter.makeSort(array);
-	    time = System.nanoTime() - start;
-	    System.out.println("\nafter:");
-	    System.out.println("\nSorted time: " + time + " nano s.");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("4) Merg sort");
-	    generator.generate(array, 0);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.MERG);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
-
-
-	    System.out.println("5) Exchange sort");
-	    generator.generate(array, 0);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.EXCHANGE);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
-
-
-
-	    System.out.println("Test 2 (array had bean sorted) but last element is random ________________________________________\n\n");
-	    generator.generate(array,1);
-	    System.out.println("1) Arrays.sort():");
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.ARRAYS);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-
-	    System.out.println("2) Bubble sort");
-	    System.out.println("before:");
-	    generator.generate(array,1);
-	    printer.print(array);
-	    System.out.println("\nafter Bubble revers sort:");
-	    bubbleSort = new BubbleSort();
-	    bubbleSort.reverseSort(array);
-	    printer.print(array);
-	    generator.generate(array, 1);
-	    System.out.println("\nbefore:");
-	    printer.print(array);
-	    System.out.println("\nafter Bubble classic sort:");
-	    sorter = new Sorter(TyprOfSort.BUBBLE);
-	    sorter.makeSort(array);
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("3) Recursive sort");
-	    generator.generate(array, 1);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.RECURSIVE);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("4) Merg sort");
-	    generator.generate(array, 1);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.MERG);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
-
-
-	    System.out.println("5) Exchange sort");
-	    generator.generate(array, 1);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.EXCHANGE);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
-
-
-
-	    System.out.println("Test 3 (array had bean reverse sorted) ________________________________________\n\n");
-	    generator.generate(array,2);
-	    System.out.println("1) Arrays.sort():");
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.ARRAYS);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-
-	    System.out.println("2) Bubble sort");
-	    System.out.println("before:");
-	    generator.generate(array,2);
-	    printer.print(array);
-	    System.out.println("\nafter Bubble revers sort:");
-	    bubbleSort = new BubbleSort();
-	    bubbleSort.reverseSort(array);
-	    printer.print(array);
-	    generator.generate(array, 2);
-	    System.out.println("\nbefore:");
-	    printer.print(array);
-	    System.out.println("\nafter Bubble classic sort:");
-	    sorter = new Sorter(TyprOfSort.BUBBLE);
-	    sorter.makeSort(array);
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("3) Recursive sort");
-	    generator.generate(array, 2);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.RECURSIVE);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("4) Merg sort");
-	    generator.generate(array, 2);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.MERG);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
-
-
-	    System.out.println("5) Exchange sort");
-	    generator.generate(array, 2);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.EXCHANGE);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
-
-
-
-
-	    System.out.println("Test 4 (array contains random elements) ________________________________________\n\n");
-	    generator.generate(array,3);
-	    System.out.println("1) Arrays.sort():");
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.ARRAYS);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-
-	    System.out.println("2) Bubble sort");
-	    System.out.println("before:");
-	    generator.generate(array,3);
-	    printer.print(array);
-	    System.out.println("\nafter Bubble revers sort:");
-	    bubbleSort = new BubbleSort();
-	    bubbleSort.reverseSort(array);
-	    printer.print(array);
-	    generator.generate(array, 3);
-	    System.out.println("\nbefore:");
-	    printer.print(array);
-	    System.out.println("\nafter Bubble classic sort:");
-	    sorter = new Sorter(TyprOfSort.BUBBLE);
-	    sorter.makeSort(array);
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("3) Recursive sort");
-	    generator.generate(array, 3);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.RECURSIVE);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.println("\n\n\n");
-
-
-	    System.out.println("4) Merg sort");
-	    generator.generate(array, 3);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new Sorter(TyprOfSort.MERG);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
-
-
-	    System.out.println("5) Exchange sort");
-	    generator.generate(array, 3);
-	    System.out.println("before:");
-	    printer.print(array);
-	    sorter = new
-			    Sorter(TyprOfSort.EXCHANGE);
-	    sorter.makeSort(array);
-	    System.out.println("\nafter:");
-	    printer.print(array);
-	    System.out.printf("\n\n\n");
+	    //AdvancedTask();
 
     }
+
+
+	public static void basicTask(){
+		addTestAndStart();
+	}
+
+
+	public static void addTestAndStart(){
+		for(int j=0; j<4;j++){
+			if(j==0){
+				testsGener1.add(new Test(sortGenerator,
+						printer,
+						sorterCreator,
+						"testing with sort elements",j+1, length));
+				testsGener1.get(testsGener1.size()-1).testing();
+			}if(j==1){
+				testsGener2.add(new Test(reversSortWithoutLastElemenrGenerator,
+						printer,
+						sorterCreator,
+						"testing sort array but last element random",j+1, length));
+				testsGener2.get(testsGener2.size()-1).testing();
+			}
+			if(j==2){
+				testsGener3.add(new Test(reversSortGenerator,
+						printer,
+						sorterCreator,
+						"testing revers sort array",j+1, length));
+				testsGener3.get(testsGener3.size()-1).testing();
+			}
+			if(j==3){
+				testsGener4.add(new Test(randomGenerator,
+						printer,
+						sorterCreator,
+						"testing with random elements",j+1, length));
+				testsGener4.get(testsGener4.size()-1).testing();
+			}
+		}
+	}
+
+
+	public static void AdvancedTask(){
+		for(int i=1; i<= 8;i++){
+			length = length + length ;
+			addTestAndStart();
+		}
+
+
+		System.out.println("\n\n\n\n\n");
+		System.out.println("Result of Bubble sort:");
+		System.out.println("1) " + testsGener1.get(0).getGenerator());
+		List<MainTest.ResultTesting> result1 = testsGener1.get(0).getBubbleSort();
+		for(int j=0;j<result1.size();j++){
+			System.out.println(result1.get(j));
+		}
+
+		System.out.println("\n\n\n\n\n");
+		System.out.println("Result of Arrays.sort() sort:");
+		System.out.println("2) " + testsGener1.get(0).getGenerator());
+		List<MainTest.ResultTesting> result2 = testsGener1.get(0).getArraysSort();
+		for(int j=0;j<result2.size();j++){
+			System.out.println(result2.get(j));
+		}
+
+		System.out.println("\n\n\n\n\n");
+		System.out.println("Result of Exchange sort:");
+		System.out.println("3) " + testsGener1.get(0).getGenerator());
+		List<MainTest.ResultTesting> result3 = testsGener1.get(0).getExchangeSort();
+		for(int j=0;j<result3.size();j++){
+			System.out.println(result3.get(j));
+		}
+
+
+		System.out.println("\n\n\n\n\n");
+		System.out.println("Result of Merge sort:");
+		System.out.println("4) " + testsGener1.get(0).getGenerator());
+		List<MainTest.ResultTesting> result4 = testsGener1.get(0).getMergSort();
+		for(int j=0;j<result4.size();j++){
+			System.out.println(result4.get(j));
+		}
+
+		System.out.println("\n\n\n\n\n");
+		System.out.println("Result of Recursive sort:");
+		System.out.println("5) " + testsGener1.get(0).getGenerator());
+		List<MainTest.ResultTesting> result5 = testsGener1.get(0).getRecursiveSort();
+		for(int j=0;j<result5.size();j++){
+			System.out.println(result5.get(j));
+		}
+
+	}
 }

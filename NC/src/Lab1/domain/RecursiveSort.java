@@ -1,24 +1,23 @@
 package Lab1.domain;
 
-import Lab1.Sort;
-
-public class RecursiveSort extends Sort{
+public class RecursiveSort extends Sort {
 	private int ARRAY_LENGTH;
 	private int[] array;
 
 	public RecursiveSort() {
-
+		this.nameOfSort = "Using method Recursive sort";
 	}
 
 
 	@Override
-	public void sort(int[] array) {
+	protected void sorting(int[] array) {
 		this.array = array;
 		this.ARRAY_LENGTH = array.length;
 		int startIndex = 0;
 		int endIndex = ARRAY_LENGTH - 1;
 		doSort(startIndex, endIndex);
 	}
+
 
 	private void doSort(int start, int end) {
 		if (start >= end)

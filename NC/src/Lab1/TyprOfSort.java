@@ -5,5 +5,5 @@ public enum TyprOfSort {
 	EXCHANGE,
 	MERG,
 	RECURSIVE,
-	ARRAYS;
+	ARRAYS
 }

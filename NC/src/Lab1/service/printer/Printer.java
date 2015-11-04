@@ -1,4 +1,4 @@
-package Lab1.service;
+package Lab1.service.printer;
 
 import java.util.Arrays;
 
