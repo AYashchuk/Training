@@ -11,42 +11,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SortTester {
-	private static MainTest [] mainTests = new MainTest[4];
-	private  static int length = 20;
-	private static List<MainTest> testsGener1 = new ArrayList<>();
-	private static List<MainTest> testsGener2 = new ArrayList<>();
-	private static List<MainTest> testsGener3 = new ArrayList<>();
-	private static List<MainTest> testsGener4 = new ArrayList<>();
-	static Printer printer = new Printer();
+	private  static int length = 20;                               // arrays length
+	private static List<MainTest> testsGener1 = new ArrayList<>(); // list have tests are based on generator with sort elements
+	private static List<MainTest> testsGener2 = new ArrayList<>(); // list have tests are based on generator with sort array but,
+																															// last element random
+	private static List<MainTest> testsGener3 = new ArrayList<>(); // list have tests are based on generator revers sort array
+	private static List<MainTest> testsGener4 = new ArrayList<>(); // list have tests are based on generator with random elements
+	private static Printer printer = new Printer();                // object who print array
 
-	static Generator randomGenerator = new MyGenerator(new GenRandomArrat());
-	static Generator reversSortGenerator = new MyGenerator(new GenReversSortArray());
-	static Generator reversSortWithoutLastElemenrGenerator = new MyGenerator(new GenSoertArrayWithoutLastElement());
-	static Generator sortGenerator = new MyGenerator(new GenSortArray());
-	static SorterCreator sorterCreator = new MySort();
+	private static Generator randomGenerator = new MyGenerator(new GenRandomArrat());
+	private static Generator reversSortGenerator = new MyGenerator(new GenReversSortArray());
+	private static Generator reversSortWithoutLastElemenrGenerator = new MyGenerator(new GenSoertArrayWithoutLastElement());
+	private static Generator sortGenerator = new MyGenerator(new GenSortArray());
+	private static SorterCreator sorterCreator = new MySort();     // object how create different sort methods
 
     public static void main(String[] args) {
 
-	    basicTask();
+	    basicTask(); // start basic task
 
-	    //AdvancedTask();
+	    //AdvancedTask(); // start advanced task
 
     }
 
 
-	public static void basicTask(){
+	public static void basicTask(){ // delegates start method addTestAndStart()
 		addTestAndStart();
 	}
 
 
 	public static void addTestAndStart(){
-		for(int j=0; j<4;j++){
-			if(j==0){
-				testsGener1.add(new Test(sortGenerator,
-						printer,
-						sorterCreator,
-						"testing with sort elements",j+1, length));
-				testsGener1.get(testsGener1.size()-1).testing();
+		for(int j=0; j<4;j++){                                             // use cycle for create different tests based on different generators
+			if(j==0){                                                      // if type of generator 1
+				testsGener1.add(                                           // create test and add him on list
+						new Test(sortGenerator,                            // for create add in constructor some type of generator,
+						printer,                                           // some type of printer
+						sorterCreator,                                     // some type of sort method creator
+						"testing with sort elements",j+1, length));        // add test name, test id, and arrays length
+				testsGener1.get(testsGener1.size()-1).testing();           // after add test in list, start test calling method .testing();
 			}if(j==1){
 				testsGener2.add(new Test(reversSortWithoutLastElemenrGenerator,
 						printer,
@@ -107,7 +108,7 @@ public class SortTester {
 		System.out.println("\n\n\n\n\n");
 		System.out.println("Result of Merge sort:");
 		System.out.println("4) " + testsGener1.get(0).getGenerator());
-		List<MainTest.ResultTesting> result4 = testsGener1.get(0).getMergSort();
+		List<MainTest.ResultTesting> result4 = testsGener1.get(0).getMergeSort();
 		for(int j=0;j<result4.size();j++){
 			System.out.println(result4.get(j));
 		}

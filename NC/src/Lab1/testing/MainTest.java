@@ -3,21 +3,20 @@ package Lab1.testing;
 import Lab1.service.sorterCreator.SorterCreator;
 import Lab1.service.generator.Generator;
 import Lab1.service.printer.Printer;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MainTest {
-	static List<ResultTesting> bubbleSort = new ArrayList<>();
-	static List<ResultTesting> arraysSort = new ArrayList<>();
-	static List<ResultTesting> exchangeSort = new ArrayList<>();
-	static List<ResultTesting> mergSort = new ArrayList<>();
-	static List<ResultTesting> recursiveSort = new ArrayList<>();
-	protected Generator generator;
-	protected Printer printer;
-	protected SorterCreator sorter;
-	protected String nameOfTest;
-	protected int id;
+	static List<ResultTesting> bubbleSort = new ArrayList<>();   // ths lists are collecting statistics about speed this type of sort
+	static List<ResultTesting> arraysSort = new ArrayList<>();   // -||-
+	static List<ResultTesting> exchangeSort = new ArrayList<>(); // -||-
+	static List<ResultTesting> mergeSort = new ArrayList<>();    // -||-
+	static List<ResultTesting> recursiveSort = new ArrayList<>();// -||-
+	protected Generator generator;                               // type of generator wich using
+	protected Printer printer;                                   // type of printer wich using
+	protected SorterCreator sorter;                              // type of sorter creator
+	protected String nameOfTest;                                 // name of this test
+	protected int id;                                            // id of this test
 	protected int [] array;
 
 	protected MainTest(Generator generator, Printer printer, SorterCreator sorter,int arrayLength) {
@@ -88,18 +87,21 @@ public abstract class MainTest {
 		return exchangeSort;
 	}
 
-	public static List<ResultTesting> getMergSort() {
-		return mergSort;
+	public static List<ResultTesting> getMergeSort() {
+		return mergeSort;
 	}
 
 	public static List<ResultTesting> getRecursiveSort() {
 		return recursiveSort;
 	}
 
+
+	// this class use for  includes collecting statistics about speed this type of sort (for Advanced task)
 	public class ResultTesting{
-		private Generator generator;
-		private int arrayLength;
-		private long timeSort;
+		                               // he include:
+		private Generator generator;   // type of generator
+		private int arrayLength;       // length of testing array
+		private long timeSort;         // time of sorting
 
 		protected ResultTesting(int arrayLength, long timeSort, Generator generator) {
 			this.arrayLength = arrayLength;
@@ -127,9 +129,6 @@ public abstract class MainTest {
 		public Generator getGenerator() {
 			return generator;
 		}
-
-
-
 
 		@Override
 		public String toString(){

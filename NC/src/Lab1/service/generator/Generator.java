@@ -1,8 +1,12 @@
 package Lab1.service.generator;
 
 public abstract class Generator{
-	protected String generatorName;
-	private GenerateBehavior generateBehavior;
+	// Overview:
+	// this class using for creating other class generators
+	// for generators behavior using pattern Strategy
+
+	protected String generatorName;               // generators name
+	private GenerateBehavior generateBehavior;    // generators behavior (using interface)
 
 
 	public Generator(GenerateBehavior generateBehavior,String generatorName) {

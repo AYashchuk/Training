@@ -1,6 +1,8 @@
 package Lab1.service.generator;
 
 public class GenSoertArrayWithoutLastElement implements GenerateBehavior {
+	// Overview:
+	// This is realisation Behavior when generator generate sorted array, but last element is random
 	@Override
 	public void generate(int[] array) {
 		for(int i=0;i<array.length;i++){
