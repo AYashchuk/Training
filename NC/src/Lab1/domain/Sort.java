@@ -1,6 +1,16 @@
 package Lab1.domain;
 
-public abstract class Sort {
+/**
+ * This class it is basic class for some methods of sort;
+ * @author Yashchuk A. F.
+ * @see Lab1.domain.ArraySort;
+ * @see Lab1.domain.BubbleSort;
+ * @see Lab1.domain.ExchangeSort;
+ * @see Lab1.domain.MergeSsort;
+ * @see Lab1.domain.RecursiveSort;
+ *
+ */
+public abstract class Sort{
 	protected String nameOfSort;
 	protected boolean mod;
 	private long timeOfSort;

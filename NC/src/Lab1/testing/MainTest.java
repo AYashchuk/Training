@@ -6,17 +6,31 @@ import Lab1.service.printer.Printer;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+/**
+ * Overview:
+ * This class testing different type of sort with using one type of generator;
+ * @author Yashchuk A. F.
+ *
+ */
 public abstract class MainTest {
-	static List<ResultTesting> bubbleSort = new ArrayList<>();   // ths lists are collecting statistics about speed this type of sort
-	static List<ResultTesting> arraysSort = new ArrayList<>();   // -||-
-	static List<ResultTesting> exchangeSort = new ArrayList<>(); // -||-
-	static List<ResultTesting> mergeSort = new ArrayList<>();    // -||-
-	static List<ResultTesting> recursiveSort = new ArrayList<>();// -||-
-	protected Generator generator;                               // type of generator wich using
-	protected Printer printer;                                   // type of printer wich using
-	protected SorterCreator sorter;                              // type of sorter creator
-	protected String nameOfTest;                                 // name of this test
-	protected int id;                                            // id of this test
+	/** ths lists are collecting statistics about speed this type of sort */
+	static List<ResultTesting> bubbleSort = new ArrayList<>();
+	static List<ResultTesting> arraysSort = new ArrayList<>();
+	static List<ResultTesting> exchangeSort = new ArrayList<>();
+	static List<ResultTesting> mergeSort = new ArrayList<>();
+	static List<ResultTesting> recursiveSort = new ArrayList<>();
+	/**  type of generator wich using */
+	protected Generator generator;
+	/** type of printer wich using  */
+	protected Printer printer;
+	/** type of sorter creator  */
+	protected SorterCreator sorter;
+	/**  name of this test */
+	protected String nameOfTest;
+	/** id of this test */
+	protected int id;
 	protected int [] array;
 
 	protected MainTest(Generator generator, Printer printer, SorterCreator sorter,int arrayLength) {
@@ -96,12 +110,24 @@ public abstract class MainTest {
 	}
 
 
-	// this class use for  includes collecting statistics about speed this type of sort (for Advanced task)
+
+	/**
+	 * Overview:
+	 * This class use for  includes collecting statistics about speed this type of sort (for Advanced task);
+	 * include:
+	 * type of generator
+	 * length of testing array
+	 *  time of sorting
+	 *
+	 * @author Yashchuk A. F.
+	 * @version 1.0
+	 *
+	 */
 	public class ResultTesting{
-		                               // he include:
-		private Generator generator;   // type of generator
-		private int arrayLength;       // length of testing array
-		private long timeSort;         // time of sorting
+
+		private Generator generator;
+		private int arrayLength;
+		private long timeSort;
 
 		protected ResultTesting(int arrayLength, long timeSort, Generator generator) {
 			this.arrayLength = arrayLength;

@@ -10,43 +10,62 @@ import Lab1.testing.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Overview:
+ * This program sort int arrays, and saved statistic about different sort methods
+ * @author Yashchuk A. F.
+ *
+ */
 public class SortTester {
-	private  static int length = 20;                               // arrays length
-	private static List<MainTest> testsGener1 = new ArrayList<>(); // list have tests are based on generator with sort elements
-	private static List<MainTest> testsGener2 = new ArrayList<>(); // list have tests are based on generator with sort array but,
-																															// last element random
-	private static List<MainTest> testsGener3 = new ArrayList<>(); // list have tests are based on generator revers sort array
-	private static List<MainTest> testsGener4 = new ArrayList<>(); // list have tests are based on generator with random elements
-	private static Printer printer = new Printer();                // object who print array
+	/** arrays length  */
+	private  static int length = 20;
+	/**  list have tests are based on generator with sort elements */
+	private static List<MainTest> testsGener1 = new ArrayList<>();
+	/**  list have tests are based on generator with sort array but, last element random */
+	private static List<MainTest> testsGener2 = new ArrayList<>();
+	/**  list have tests are based on generator revers sort array */
+	private static List<MainTest> testsGener3 = new ArrayList<>();
+	/**  list have tests are based on generator with random elements */
+	private static List<MainTest> testsGener4 = new ArrayList<>();
+	/**  object who print array */
+	private static Printer printer = new Printer();
 
 	private static Generator randomGenerator = new MyGenerator(new GenRandomArrat());
 	private static Generator reversSortGenerator = new MyGenerator(new GenReversSortArray());
 	private static Generator reversSortWithoutLastElemenrGenerator = new MyGenerator(new GenSoertArrayWithoutLastElement());
 	private static Generator sortGenerator = new MyGenerator(new GenSortArray());
-	private static SorterCreator sorterCreator = new MySort();     // object how create different sort methods
+	/**  object how create different sort methods */
+	private static SorterCreator sorterCreator = new MySort();
 
-    public static void main(String[] args) {
+	/**
+	 * main method
+	 */
+	public static void main(String[] args) {
+		 basicTask(); // start basic task
+		//AdvancedTask(); // start advanced task
 
-	    basicTask(); // start basic task
-
-	    //AdvancedTask(); // start advanced task
-
-    }
+	}
 
 
 	public static void basicTask(){ // delegates start method addTestAndStart()
 		addTestAndStart();
 	}
 
-
+	/**
+	 * Overview:
+	 * Method create Tests and start testing
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	public static void addTestAndStart(){
 		for(int j=0; j<4;j++){                                             // use cycle for create different tests based on different generators
 			if(j==0){                                                      // if type of generator 1
 				testsGener1.add(                                           // create test and add him on list
 						new Test(sortGenerator,                            // for create add in constructor some type of generator,
-						printer,                                           // some type of printer
-						sorterCreator,                                     // some type of sort method creator
-						"testing with sort elements",j+1, length));        // add test name, test id, and arrays length
+								printer,                                           // some type of printer
+								sorterCreator,                                     // some type of sort method creator
+								"testing with sort elements",j+1, length));        // add test name, test id, and arrays length
 				testsGener1.get(testsGener1.size()-1).testing();           // after add test in list, start test calling method .testing();
 			}if(j==1){
 				testsGener2.add(new Test(reversSortWithoutLastElemenrGenerator,

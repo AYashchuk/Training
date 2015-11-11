@@ -1,12 +1,22 @@
 package Lab1.domain;
 
+import Lab1.TypeOfSort;
+
 import java.util.Arrays;
 
+
+
+/**
+ * This class for sort using method Merge sort;
+ * @author Yashchuk A. F.
+ *
+ */
+@MySorter(type = TypeOfSort.MERGE)
 public class MergeSsort extends Sort {
+
 	public MergeSsort() {
 		this.nameOfSort = "Using method Merge sort";
 	}
-
 	private int[] merge(int[] arr_1, int[] arr_2) {
 		int len_1 = arr_1.length, len_2 = arr_2.length;
 		int a = 0, b = 0, len = len_1 + len_2; // a, b - счетчики в массивах
@@ -23,7 +33,10 @@ public class MergeSsort extends Sort {
 		}
 		return result;
 	}
-
+	/**
+	 * Method sorting array
+	 * @param array - it is input array
+	 */
 	@Override
 	protected void sorting(int[] array) {
 		int len = array.length;

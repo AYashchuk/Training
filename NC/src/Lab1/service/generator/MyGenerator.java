@@ -1,9 +1,14 @@
 package Lab1.service.generator;
 
-public class MyGenerator extends Generator{
-	//Overview:
-	// this is class realisation of abstract class Generator
 
+/**
+ * Overview:
+ * This is class realisation of abstract class Generator;
+ * @author Yashchuk A. F.
+ * @version 1.0
+ *
+ */
+public class MyGenerator extends Generator{
 	public MyGenerator(GenerateBehavior generateBehavior) {
 		super(generateBehavior, "Current behavior: " + generateBehavior.toString());
 	}

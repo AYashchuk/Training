@@ -1,5 +1,16 @@
 package Lab1.domain;
 
+
+import Lab1.TypeOfSort;
+
+import java.lang.annotation.Annotation;
+
+/**
+ * This class using method Recursive sort;
+ * @author Yashchuk A. F.
+ *
+ */
+@MySorter(type = TypeOfSort.RECURSIVE)
 public class RecursiveSort extends Sort {
 	private int ARRAY_LENGTH;
 	private int[] array;
@@ -8,7 +19,10 @@ public class RecursiveSort extends Sort {
 		this.nameOfSort = "Using method Recursive sort";
 	}
 
-
+	/**
+	 * Method sorting array
+	 * @param array - it is input array
+	 */
 	@Override
 	protected void sorting(int[] array) {
 		this.array = array;
@@ -44,4 +58,5 @@ public class RecursiveSort extends Sort {
 		doSort(start, cur);
 		doSort(cur+1, end);
 	}
+
 }

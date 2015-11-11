@@ -1,12 +1,17 @@
 package Lab1.service.generator;
 
+/**
+ * Overview:
+ * This class using for creating other class generators,
+ * for generators behavior using pattern Strategy;
+ * @author Yashchuk A. F.
+ *
+ */
 public abstract class Generator{
-	// Overview:
-	// this class using for creating other class generators
-	// for generators behavior using pattern Strategy
-
-	protected String generatorName;               // generators name
-	private GenerateBehavior generateBehavior;    // generators behavior (using interface)
+	/** generators name   */
+	protected String generatorName;
+	/** generators behavior (using interface)  */
+	private GenerateBehavior generateBehavior;
 
 
 	public Generator(GenerateBehavior generateBehavior,String generatorName) {
@@ -14,6 +19,12 @@ public abstract class Generator{
 		this.generatorName = generatorName;
 	}
 
+	/**
+	 * Overview:
+	 * Method delegates calling generation class behavior
+	 * @author Yashchuk A. F.
+	 * @param array - it is input array which we will be fill
+	 */
 	public  void generate(int[] array) {
 		generateBehavior.generate(array);
 	}
