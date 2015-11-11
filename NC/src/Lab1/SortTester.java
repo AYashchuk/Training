@@ -6,7 +6,13 @@ import Lab1.service.sorterCreator.MySort;
 import Lab1.service.sorterCreator.SorterCreator;
 import Lab1.testing.MainTest;
 import Lab1.testing.Test;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +48,8 @@ public class SortTester {
 	 * main method
 	 */
 	public static void main(String[] args) {
-		 basicTask(); // start basic task
-		//AdvancedTask(); // start advanced task
+		 //basicTask(); // start basic task
+		AdvancedTask(); // start advanced task
 
 	}
 
@@ -91,11 +97,20 @@ public class SortTester {
 		}
 	}
 
-
+	/**
+	 * Method start Advanced Task
+	 */
 	public static void AdvancedTask(){
 		for(int i=1; i<= 8;i++){
 			length = length + length ;
 			addTestAndStart();
+		}
+
+
+		try {
+			writeXLSFile();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 
@@ -140,5 +155,36 @@ public class SortTester {
 			System.out.println(result5.get(j));
 		}
 
+	}
+
+	/**
+	 * Method write result in Excel file
+	 */
+	public static void writeXLSFile() throws IOException, IOException {
+		String excelFileName = "D:/Test.xls";//name of excel file
+		String sheetName = "Sheet1";//name of sheet
+		HSSFWorkbook wb = new HSSFWorkbook();
+		HSSFSheet sheet = wb.createSheet(sheetName) ;
+		List<MainTest.ResultTesting> result1 = testsGener1.get(0).getBubbleSort();
+		//iterating r number of rows
+		for (int r=0;r < result1.size(); r++ )
+		{
+			HSSFRow row = sheet.createRow(r);
+			String [] result = result1.get(r).toString().split("\t");
+			//iterating c number of columns
+			for (int c=0;c < result.length; c++ )
+			{
+				HSSFCell cell = row.createCell(c);
+
+				cell.setCellValue(result[c]);
+			}
+		}
+
+		FileOutputStream fileOut = new FileOutputStream(excelFileName);
+
+		//write this workbook to an Outputstream.
+		wb.write(fileOut);
+		fileOut.flush();
+		fileOut.close();
 	}
 }

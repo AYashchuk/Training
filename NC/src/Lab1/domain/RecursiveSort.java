@@ -3,8 +3,6 @@ package Lab1.domain;
 
 import Lab1.TypeOfSort;
 
-import java.lang.annotation.Annotation;
-
 /**
  * This class using method Recursive sort;
  * @author Yashchuk A. F.
