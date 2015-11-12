@@ -37,7 +37,7 @@ public class SortTester {
 	/**  object who print array */
 	private static Printer printer = new Printer();
 
-	private static Generator randomGenerator = new MyGenerator(new GenRandomArrat());
+	private static Generator randomGenerator = new MyGenerator(new GenRandomArray());
 	private static Generator reversSortGenerator = new MyGenerator(new GenReversSortArray());
 	private static Generator reversSortWithoutLastElemenrGenerator = new MyGenerator(new GenSoertArrayWithoutLastElement());
 	private static Generator sortGenerator = new MyGenerator(new GenSortArray());

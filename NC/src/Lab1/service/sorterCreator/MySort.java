@@ -22,7 +22,7 @@ public class MySort extends SorterCreator {
 	 * @return Sort - Object which can sort according some method
 	 */
 	@Override
-	public Sort createSort(Enum typeOfSort) { // Factory method
+	public Sort createSort(TypeOfSort typeOfSort) { // Factory method
 		if(typeOfSort == TypeOfSort.BUBBLE){
 			sort = new BubbleSort();
 		}if(typeOfSort == TypeOfSort.ARRAYS){

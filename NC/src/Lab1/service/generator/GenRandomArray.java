@@ -7,7 +7,7 @@ package Lab1.service.generator;
  * @author Yashchuk A. F.
  *
  */
-public class GenRandomArrat implements GenerateBehavior {
+public class GenRandomArray implements GenerateBehavior {
 	/**
 	 * Method Override parent, and using generator:
 	 * this generator generate random array
