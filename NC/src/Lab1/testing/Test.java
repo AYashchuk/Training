@@ -95,6 +95,15 @@ public class Test extends MainTest{
 		System.out.println("time of sort: " + sortTime + " micro s.");
 	}
 
+
+	/**
+	 * This method testing different type of sort
+	 * @author Yashchuk A. F.
+	 * @param sortName - name of sort method
+	 * @param sort - type of sort method
+	 * @param id - test number
+	 * @return time of sorting current method
+	 */
 	private long testingSort(String sortName,Sort sort, int id){ // method testing sort
 		System.out.println("\n\n");
 		long time = 0;
