@@ -36,7 +36,7 @@ public final class Record {
 		if(tmp.length > 3 && validateDate(tmp[0],tmp[1])  && validateAndInitView(tmp[2])) {
 			this.date = tmp[0] + " " + tmp[1];
 			this.view = tmp[2];
-			this.source = tmp[3];
+			this.source = event.substring(26,event.length());
 			return true;
 		}else {
 			return false;
@@ -109,6 +109,18 @@ public final class Record {
 		return false;
 	}
 
+	private String prepareView(){
+		if(view.equals(".")){
+			return view + "    ";
+		}if(view.equals("!")){
+			return view + "    ";
+		}if(view.equals("!!!")){
+			return view + "  ";
+		}if(view.equals("!!!!")){
+			return view + " ";
+		}
+		return view;
+	}
 
 	public Importance getImportance() {
 		return importance;
@@ -134,10 +146,33 @@ public final class Record {
 		return message;
 	}
 
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Record record = (Record) o;
+
+		if (!date.equals(record.date)) return false;
+		if (!source.equals(record.source)) return false;
+		if (!view.equals(record.view)) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = view.hashCode();
+		result = 31 * result + source.hashCode();
+		result = 31 * result + date.hashCode();
+		return result;
+	}
+
 	@Override
 	public String toString() {
 		return  date +
-				" " + view +
-				" " + source;
+				" " + prepareView() +
+				" " + source ;
 	}
 }
