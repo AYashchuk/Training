@@ -14,16 +14,17 @@ import java.util.NoSuchElementException;
  *
  */
 public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
+	/**  */
 	private Record[] array = new Record[11];
+	/**  */
 	private int imageLength;
 
 
 	/**
-	 * Overview:
+	 * Overview:	// метод расшіряет текущий масив
 	 * @author Yashchuk A. F.
 	 *
 	 */
-	// метод расшіряет текущий масив
 	private void enlargeArray() {
 		int length = array.length;
 		if (length < 20000) {
@@ -163,6 +164,11 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 		return -1;
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	public int size() {
 		//System.out.println("real  size: " + array.length);
 		//System.out.println("image size: " + (imageLength));

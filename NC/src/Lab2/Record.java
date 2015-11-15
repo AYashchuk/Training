@@ -8,15 +8,35 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/**
+ * Overview:
+ * @author Yashchuk A. F.
+ * @version 1.0
+ *
+ */
 public final class Record {
+	/**  */
 	private Importance importance;
+	/**  */
 	private String view;
+	/**  */
 	private String annotation;
+	/**  */
 	private String source;
+	/**  */
 	private String date;
+	/**  */
 	private String message;
+	/**  */
 	private SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
 
+
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	public Record( Date date, Importance importance, String source, String message) throws WrongInputDataException, UnknownImportanceStateException {
 		validateSourse(source);
 		validateAnnotation(message);
@@ -27,6 +47,11 @@ public final class Record {
 		init(importance);
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	public Record(String event) throws WrongInputDataException {
 		if(!parseEvent(event)) throw  new WrongInputDataException("incorrect input data!");
 	}
@@ -43,6 +68,11 @@ public final class Record {
 		}
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	private boolean validateAndInitView(String view) {
 		if(view.equals(".")){
 			importance = Importance.FIRST;
@@ -60,6 +90,11 @@ public final class Record {
 		return false;
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	private void init(Importance importance) throws UnknownImportanceStateException {
 		switch (importance){
 			case FIRST:{
@@ -84,18 +119,33 @@ public final class Record {
 		}
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	private void validateAnnotation(String annotation) throws WrongInputDataException {
 		if(annotation.split("\n").length != 1 || annotation.split("\r").length != 1){
 			throw new WrongInputDataException("Incorrect massage, massage must not contains line break");
 		}
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	private void validateSourse(String source) throws WrongInputDataException {
 		if(source.split(" ").length != 1){
 			throw new WrongInputDataException("Source name must haven`t contains space!");
 		}
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	private boolean validateDate(String date, String time){
 		String dateRegx = "(19|20)\\d\\d[- -.](0[1-9]|1[012])[- -.](0[1-9]|[12][0-9]|3[01])";
 		String timeRegx = "^([0-1]\\d|2[0-3])(:[0-5]\\d){2}$";
@@ -109,6 +159,11 @@ public final class Record {
 		return false;
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	private String prepareView(){
 		if(view.equals(".")){
 			return view + "    ";
@@ -147,6 +202,11 @@ public final class Record {
 	}
 
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -161,6 +221,11 @@ public final class Record {
 		return true;
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	@Override
 	public int hashCode() {
 		int result = view.hashCode();
@@ -169,6 +234,11 @@ public final class Record {
 		return result;
 	}
 
+	/**
+	 * Overview:
+	 * @author Yashchuk A. F.
+	 *
+	 */
 	@Override
 	public String toString() {
 		return  date +
