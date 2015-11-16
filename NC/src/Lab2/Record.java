@@ -3,6 +3,7 @@ package Lab2;
 import Lab2.exception.UnknownImportanceStateException;
 import Lab2.exception.WrongInputDataException;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -25,7 +26,7 @@ public final class Record {
 	/**  */
 	private String source;
 	/**  */
-	private String date;
+	private Date date;
 	/**  */
 	private String message;
 	/**  */
@@ -34,13 +35,12 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	public Record( Date date, Importance importance, String source, String message) throws WrongInputDataException, UnknownImportanceStateException {
 		validateSourse(source);
 		validateAnnotation(message);
-		this.date = format.format(date);
+		this.date = date;
 		this.importance = importance;
 		this.source = source;
 		this.message = message;
@@ -49,7 +49,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	public Record(String event) throws WrongInputDataException {
@@ -58,19 +57,29 @@ public final class Record {
 
 	private boolean parseEvent(String event)  {
 		String tmp [] = event.trim().split(" ");
-		if(tmp.length > 3 && validateDate(tmp[0],tmp[1])  && validateAndInitView(tmp[2])) {
-			this.date = tmp[0] + " " + tmp[1];
-			this.view = tmp[2];
-			this.source = event.substring(26,event.length());
-			return true;
-		}else {
+		if(tmp.length < 3){
+			System.out.println("event is short!");
+			return false;
+
+		} if(!validateDate(tmp[0],tmp[1]) ){
+			System.out.println("invalid date!");
+			return false;
+		} if(!validateAndInitView(tmp[2])) {
+			System.out.println("invalid view!");
 			return false;
 		}
+		try {
+			this.date = format.parse(tmp[0] + " " + tmp[1]);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.view = tmp[2];
+		this.source = event.substring(26,event.length());
+		return true;
 	}
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	private boolean validateAndInitView(String view) {
@@ -92,7 +101,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	private void init(Importance importance) throws UnknownImportanceStateException {
@@ -121,7 +129,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	private void validateAnnotation(String annotation) throws WrongInputDataException {
@@ -132,7 +139,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	private void validateSourse(String source) throws WrongInputDataException {
@@ -143,7 +149,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	private boolean validateDate(String date, String time){
@@ -161,7 +166,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	private String prepareView(){
@@ -193,7 +197,7 @@ public final class Record {
 		return source;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
@@ -204,7 +208,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -223,7 +226,6 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -236,13 +238,21 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
 	public String toString() {
-		return  date +
+		return  format.format(date) +
 				" " + prepareView() +
 				" " + source ;
 	}
+
+/*
+	static class YearComparator implements Comparator<Composition> {
+
+		@Override
+		public int compare(Composition o1, Composition o2) {
+			return o1.getYear().compareTo(o2.getYear());
+		}
+	}*/
 }

@@ -1,5 +1,8 @@
 package Lab2;
 
+import Lab2.comparators.DateComparator;
+
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -15,6 +18,8 @@ import java.util.NoSuchElementException;
  */
 public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	/**  */
+	private Comparator <Record> dateComparator = new DateComparator();
+	/**  */
 	private Record[] array = new Record[11];
 	/**  */
 	private int imageLength;
@@ -22,7 +27,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:	// метод расшіряет текущий масив
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	private void enlargeArray() {
@@ -46,7 +50,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -62,7 +65,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -72,7 +74,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -86,7 +87,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	public E get(int index) {
@@ -101,7 +101,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -111,7 +110,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -125,7 +123,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	public boolean add(int index, Record value) {
@@ -152,7 +149,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	public int indexOf(Record value) {
@@ -166,7 +162,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	public int size() {
@@ -177,7 +172,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -187,7 +181,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -197,17 +190,15 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
 	public void sortByDate() {
-
+		sortint(array,dateComparator);
 	}
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -217,7 +208,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -227,7 +217,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -237,7 +226,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -251,7 +239,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -271,7 +258,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -286,7 +272,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -298,7 +283,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
 	 *
 	 */
 	@Override
@@ -312,14 +296,13 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 			}
 		}
 		imageArray = imageArray + "]";
-		// System.out.println("real  Array: " + Arrays.toString(array));
 		System.out.println("image Array: " + imageArray);
 		return "";
 	}
 
 	/**
 	 * Overview:
-	 * @author Yashchuk A. F.
+	 * My realization of simple iterator
 	 * @see java.util.Iterator
 	 */
 	@Override
@@ -336,7 +319,6 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 		/**
 		 * Overview:
-		 * @author Yashchuk A. F.
 		 *
 		 */
 		@Override
@@ -347,8 +329,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 		/**
 		 * Overview:
-		 * @author Yashchuk A. F.
 		 *
+		 * @throws java.util.NoSuchElementException
 		 */
 		@Override
 		public E next() {
@@ -360,8 +342,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 		/**
 		 * Overview:
-		 * @author Yashchuk A. F.
 		 *
+		 * @throws java.lang.IllegalStateException()
 		 */
 		@Override
 		public void remove() {
@@ -379,4 +361,21 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 			}
 		}
 	}
+
+	/**
+	 * Overview:
+	 * Method sorting using bubble sort
+	 * @see Lab1.domain.BubbleSort
+	 *
+	 */
+	protected void sortint(Record[] tmpArray, Comparator<Record> comparator) {
+		for(int i = 0; i < imageLength- 1; i++)
+				for(int j = 0; j < imageLength - i - 1; j++) {
+					if(comparator.compare(tmpArray[j],tmpArray[j+1])>0){
+						Record tmp = tmpArray[j];
+						tmpArray[j] = tmpArray[j + 1];
+						tmpArray[j + 1] = tmp;
+					}
+				}
+		}
 }

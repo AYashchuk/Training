@@ -21,7 +21,6 @@ public class ArraySort extends Sort {
 	/**
 	 * Method sorting array
 	 * @param array - it is input array
-	 * @return void
 	 */
 	@Override
 	protected void sorting(int[] array) {
