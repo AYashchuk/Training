@@ -137,7 +137,7 @@ public class ArrayJournalTest {
 
 
 	@Test
-	public void sortByDateTest() throws WrongInputDataException {
+	 public void sortByDateTest() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		ArrayJournal arrayJournal = new ArrayJournal();
 		Record record = new Record(s + "20000");
@@ -165,6 +165,47 @@ public class ArrayJournalTest {
 		assertEquals(arrayJournal.get(0),record2);
 		assertEquals(arrayJournal.get(1),record1);
 		assertEquals(arrayJournal.get(5),record3);
+		assertEquals(arrayJournal.get(arrayJournal.size()-1),record);
+	}
+
+
+
+	@Test
+	public void sortByImportanceDateTest() throws WrongInputDataException {
+		String s = "2015-11-13 01:47:20 !!!!  Tester";
+		ArrayJournal arrayJournal = new ArrayJournal();
+		Record record = new Record(s + "20000");
+		Record record1 = new Record("2014-10-09 01:47:20 !!!!  Tester");
+		Record record2 = new Record("2013-11-25 01:47:20 !!!   Tester");
+		Record record3 = new Record("2015-10-13 01:47:20 !!!!  Tester");
+		Record record4 = new Record("2015-09-01 01:47:20 .     Tester");
+		Record record9 = new Record("2015-01-13 01:47:20 !!!!  Tester");
+		Record record10 = new Record("2015-01-13 01:47:20 !     Tester");
+		Record record5 = new Record("2015-08-13 01:47:20 !!!!  Tester");
+		Record record6 = new Record("2015-11-03 01:47:20 !!!!  Tester");
+		Record record7 = new Record("2015-11-04 01:48:20 !!!!  Tester");
+		Record record8 = new Record("2015-01-13 01:47:19 !!!!  Tester");
+		Record record11 = new Record("2015-01-13 01:47:20 .     Tester");
+
+		arrayJournal.add(record);
+		arrayJournal.add(record2);
+		arrayJournal.add(record5);
+		arrayJournal.add(record4);
+		arrayJournal.add(record3);
+		arrayJournal.add(record11);
+		arrayJournal.add(record6);
+		arrayJournal.add(record7);
+		arrayJournal.add(record8);
+		arrayJournal.add(record1);
+		arrayJournal.add(record9);
+		arrayJournal.add(record10);
+
+
+		arrayJournal.sortByImportanceDate();
+
+		assertEquals(arrayJournal.get(0),record11);
+		assertEquals(arrayJournal.get(1),record4);
+		assertEquals(arrayJournal.get(5),record8);
 		assertEquals(arrayJournal.get(arrayJournal.size()-1),record);
 	}
 

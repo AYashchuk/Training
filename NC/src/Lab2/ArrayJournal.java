@@ -1,6 +1,8 @@
 package Lab2;
 
 import Lab2.comparators.DateComparator;
+import Lab2.comparators.ImportanceComparator;
+import Lab2.comparators.SourceComparator;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -19,6 +21,10 @@ import java.util.NoSuchElementException;
 public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	/**  */
 	private Comparator <Record> dateComparator = new DateComparator();
+	/**  */
+	private Comparator <Record> importanceComparator = new ImportanceComparator();
+	/**  */
+	private Comparator <Record> sourceComparator = new SourceComparator();
 	/**  */
 	private Record[] array = new Record[11];
 	/**  */
@@ -194,7 +200,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public void sortByDate() {
-		sortint(array,dateComparator);
+		sortintByDate(array, dateComparator);
 	}
 
 	/**
@@ -203,7 +209,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public void sortByImportanceDate() {
-
+		sortintByImportanceDate(array,importanceComparator,dateComparator);
 	}
 
 	/**
@@ -368,14 +374,37 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 * @see Lab1.domain.BubbleSort
 	 *
 	 */
-	protected void sortint(Record[] tmpArray, Comparator<Record> comparator) {
+	protected void sortintByDate(Record[] tmpArray, Comparator<Record> comparator) {
 		for(int i = 0; i < imageLength- 1; i++)
 				for(int j = 0; j < imageLength - i - 1; j++) {
 					if(comparator.compare(tmpArray[j],tmpArray[j+1])>0){
-						Record tmp = tmpArray[j];
-						tmpArray[j] = tmpArray[j + 1];
-						tmpArray[j + 1] = tmp;
+						swap(tmpArray,j,j+1);
+					}
+		        }
+	}
+
+	/**
+	 * Overview:
+	 * Method sorting using bubble sort
+	 * @see Lab1.domain.BubbleSort
+	 *
+	 */
+	protected void sortintByImportanceDate(Record[] tmpArray, Comparator<Record> comparator1,Comparator<Record> comparator2) {
+		for(int i = 0; i < imageLength- 1; i++)
+			for(int j = 0; j < imageLength - i - 1; j++) {
+				if(comparator1.compare(tmpArray[j],tmpArray[j+1]) > 0){
+					swap(tmpArray,j,j+1);
+				}if(comparator1.compare(tmpArray[j],tmpArray[j+1]) == 0){
+					if(comparator2.compare(tmpArray[j],tmpArray[j+1]) > 0){
+						swap(tmpArray,j,j+1);
 					}
 				}
-		}
+			}
+	}
+
+	public void swap(Record [] tmpArray, int index1, int index2){
+		Record tmp = tmpArray[index1];
+		tmpArray[index1] = tmpArray[index2];
+		tmpArray[index2] = tmp;
+	}
 }
