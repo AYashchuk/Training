@@ -1,5 +1,6 @@
 package Lab2.sorters;
 
+import Lab2.ArrayJournal;
 import Lab2.Journal;
 import Lab2.Record;
 import Lab2.comparators.DateComparator;
@@ -125,6 +126,19 @@ public class SimpleSorter {
 		Record tmp = tmpArray.get(index1);
 		tmpArray.set(index1,tmpArray.get(index2));
 		tmpArray.set(index2, tmp);
+	}
+
+	/**
+	 * Overview:
+	 * Method copy input array
+	 *
+	 */
+	protected Journal copyJournal(Journal tmpArray){
+		ArrayJournal<Record> journal = new ArrayJournal<>();
+		for(int i=0;i<tmpArray.size()-1;i++){
+			journal.add(tmpArray.get(i));
+		}
+		return journal;
 	}
 
 }

@@ -5,7 +5,9 @@ import Lab2.exception.WrongInputDataException;
 public class AraryJournalRun {
 
 	public static void main(String[] args) throws WrongInputDataException {
-
+		ArrayJournal arrayJournal = new ArrayJournal();
+		arrayJournal.sortByImportanceSourceDate();
+		arrayJournal.printRecords();
 
 	}
 }

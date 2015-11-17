@@ -3,6 +3,7 @@ package Lab2;
 import Lab2.comparators.DateComparator;
 import Lab2.comparators.ImportanceComparator;
 import Lab2.comparators.SourceComparator;
+import Lab2.filters.SimpleFilter;
 import Lab2.sorters.SimpleSorter;
 
 import java.util.Date;
@@ -20,7 +21,9 @@ import java.util.NoSuchElementException;
  */
 public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	/**  */
-	SimpleSorter simpleSorter = new SimpleSorter(new DateComparator(),new ImportanceComparator(),new SourceComparator());
+	private SimpleSorter simpleSorter = new SimpleSorter(new DateComparator(),new ImportanceComparator(),new SourceComparator());
+	/**  */
+	private SimpleFilter simpleFilter = new SimpleFilter(this);
 	/**  */
 	private Record[] array = new Record[11];
 	/**  */
@@ -34,12 +37,12 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	private void enlargeArray() {
 		int length = array.length;
 		if (length < 20000) {
-			length = length + (int) (length * 1.5); // увеличиваем размер масива в 1.5 раза
+			length = length + (int) (length * 1.5); // enlarge size of array in 1.5
 		} else {
 			if (length < 20000000) {
-				length = length + (int) (length * 0.5); // увеличиваем размер масива на 50%
+				length = length + (int) (length * 0.5); // enlarge size of array  50%
 			} else {
-				length = length + (int) (length * 0.001); // увеличиваем размер масива на 1/10 процента
+				length = length + (int) (length * 0.001); //enlarge size of array  1/10%
 			}
 		}
 		Record newArray[] = new Record[length];
@@ -90,10 +93,11 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	/**
 	 * Overview:
 	 *
+	 * @throws java.lang.ArrayIndexOutOfBoundsException()
 	 */
 	public E get(int index) {
 		if (index < 0 || index >= imageLength) {
-			throw new ArrayIndexOutOfBoundsException(index);
+			throw new ArrayIndexOutOfBoundsException("Current array size: " + imageLength +", you index: "+index);
 		} else {
 			return (E) array[index];
 		}
@@ -113,11 +117,12 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	/**
 	 * Overview:
 	 *
+	 * @throws java.lang.IndexOutOfBoundsException
 	 */
 	@Override
 	public void set(int index, Record value) {
 		if (index < 0 || index >= imageLength) {
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("Current array size: " + imageLength +", you index: "+index);
 		} else {
 			array[index] = value;
 		}
@@ -126,14 +131,16 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	/**
 	 * Overview:
 	 *
+	 * @throws java.lang.IndexOutOfBoundsException
+	 *
 	 */
 	public boolean add(int index, Record value) {
 		if (index < 0 || index > imageLength) {
-			return false;
+			throw  new IndexOutOfBoundsException("Current array size: " + imageLength +", you index: "+index);
 		} else {
-			if (array.length <= imageLength + 1) {  // если реальная длина масива больше мнимой, то споколйно добавляем елемент
+			if (array.length <= imageLength + 1) {               // if real length <= image length enlarge array
 				enlargeArray();
-			}
+			}                                                    // else real size bigger then image size add element
 			E tmp1 = null;
 			E tmp2 = null;
 			for (int i = index; i < imageLength + 1; i++) {
@@ -185,6 +192,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public Journal filter(Date fromDate, Date toDate) {
+
 		return null;
 	}
 
@@ -359,5 +367,9 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 				throw  new IllegalStateException();
 			}
 		}
+	}
+
+	public SimpleSorter getSimpleSorter() {
+		return simpleSorter;
 	}
 }
