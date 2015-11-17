@@ -37,7 +37,7 @@ public final class Record {
 	 * Overview:
 	 *
 	 */
-	public Record( Date date, Importance importance, String source, String message) throws WrongInputDataException, UnknownImportanceStateException {
+	public Record(Date date, Importance importance, String source, String message) throws WrongInputDataException, UnknownImportanceStateException {
 		validateSourse(source);
 		validateAnnotation(message);
 		this.date = date;

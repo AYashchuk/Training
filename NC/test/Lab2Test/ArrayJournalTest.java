@@ -209,4 +209,43 @@ public class ArrayJournalTest {
 		assertEquals(arrayJournal.get(arrayJournal.size()-1),record);
 	}
 
+
+	@Test
+	public void sortByImportanceSourceDateTest() throws WrongInputDataException {
+		String s = "2015-11-13 01:47:20 !!!!  Tester";
+		ArrayJournal arrayJournal = new ArrayJournal();
+		Record record = new Record(s + "20000");
+		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
+		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
+		Record record3 = new Record("2015-10-12 01:47:20 !!!   Tester3");
+		Record record4 = new Record("2015-09-01 01:47:20 .     Tester4");
+		Record record9 = new Record("2015-01-13 01:47:20 .     Tester5");
+		Record record10 = new Record("2015-01-13 01:47:20 !     Tester6");
+		Record record5 = new Record("2015-08-13 01:47:20 !     Tester7");
+		Record record6 = new Record("2015-11-03 04:47:20 !!!   Tester8");
+		Record record7 = new Record("2015-11-04 01:48:23 !!!!  Tester10");
+		Record record8 = new Record("2015-01-13 01:47:19 !!!!  Tester10");
+		Record record11 = new Record("2015-01-13 01:47:20 .     Tester0");
+
+		arrayJournal.add(record);
+		arrayJournal.add(record2);
+		arrayJournal.add(record5);
+		arrayJournal.add(record4);
+		arrayJournal.add(record3);
+		arrayJournal.add(record11);
+		arrayJournal.add(record6);
+		arrayJournal.add(record7);
+		arrayJournal.add(record8);
+		arrayJournal.add(record1);
+		arrayJournal.add(record9);
+		arrayJournal.add(record10);
+
+		arrayJournal.sortByImportanceSourceDate();
+
+		assertEquals(arrayJournal.get(0),record11);
+		assertEquals(arrayJournal.get(1),record4);
+		assertEquals(arrayJournal.get(5),record2);
+		assertEquals(arrayJournal.get(arrayJournal.size()-1),record);
+	}
+
 }

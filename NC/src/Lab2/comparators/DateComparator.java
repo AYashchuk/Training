@@ -4,6 +4,14 @@ import Lab2.Record;
 
 import java.util.Comparator;
 
+/**
+ * Overview:
+ * This is class - comparator for date @see Lab2.Record
+ * @author Yashchuk A. F.
+ * @version 1.0
+ * @see java.util.Comparator
+ *
+ */
 public class DateComparator implements Comparator<Record> {
 
 		@Override
