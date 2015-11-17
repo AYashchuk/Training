@@ -1,10 +1,16 @@
 package Lab2Test;
 
 import Lab2.ArrayJournal;
+import Lab2.Journal;
 import Lab2.Record;
 import Lab2.exception.WrongInputDataException;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 
 public class ArrayJournalTest {
@@ -247,5 +253,116 @@ public class ArrayJournalTest {
 		assertEquals(arrayJournal.get(5),record2);
 		assertEquals(arrayJournal.get(arrayJournal.size()-1),record);
 	}
+
+
+	@Test
+	public void filterTest1() throws WrongInputDataException {
+		String s = "2015-11-13 01:47:20 !!!!  Tester";
+		ArrayJournal arrayJournal = new ArrayJournal();
+		Record record = new Record(s + "20000");
+		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
+		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
+		Record record3 = new Record("2015-10-12 01:47:20 !!!   Tester3");
+		Record record4 = new Record("2015-09-01 01:47:20 .     Tester4");
+		Record record9 = new Record("2015-01-13 01:47:20 .     Tester5");
+		Record record10 = new Record("2015-01-13 01:47:20 !     Tester6");
+		Record record5 = new Record("2015-08-13 01:47:20 !     Tester7");
+		Record record6 = new Record("2015-11-03 04:47:20 !!!   Tester8");
+		Record record7 = new Record("2015-11-04 01:48:23 !!!!  Tester10");
+		Record record8 = new Record("2015-01-13 01:47:19 !!!!  Tester10");
+		Record record11 = new Record("2015-01-13 01:47:20 .     Tester0");
+
+		arrayJournal.add(record);
+		arrayJournal.add(record2);
+		arrayJournal.add(record5);
+		arrayJournal.add(record4);
+		arrayJournal.add(record3);
+		arrayJournal.add(record11);
+		arrayJournal.add(record6);
+		arrayJournal.add(record7);
+		arrayJournal.add(record8);
+		arrayJournal.add(record1);
+		arrayJournal.add(record9);
+		arrayJournal.add(record10);
+
+
+
+		Journal j = arrayJournal.filter("2015-01-13 01:47:19 !!!!  Tester10");
+		for(int i=0;i<j.size();i++){
+			assertEquals(j.get(i).getSource(), "Tester10");
+		}
+	}
+
+	@Test
+	public void filterTest2() throws WrongInputDataException {
+		String s = "2015-11-13 01:47:20 !!!!  Tester";
+		ArrayJournal arrayJournal = new ArrayJournal();
+		Record record = new Record(s + "20000");
+		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
+		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
+		Record record3 = new Record("2015-10-12 01:47:20 !!!   Tester3");
+		Record record4 = new Record("2015-09-01 01:47:20 .     Tester4");
+		Record record9 = new Record("2015-01-13 01:47:20 .     Tester5");
+		Record record10 = new Record("2015-01-13 01:47:20 !     Tester6");
+		Record record5 = new Record("2015-08-13 01:47:20 !     Tester7");
+		Record record6 = new Record("2015-11-03 04:47:20 !!!   Tester8");
+		Record record7 = new Record("2015-11-04 01:48:23 !!!!  Tester10");
+		Record record8 = new Record("2015-01-13 01:47:19 !!!!  Tester10");
+		Record record11 = new Record("2015-01-13 01:47:20 .     Tester0");
+
+		arrayJournal.add(record);
+		arrayJournal.add(record2);
+		arrayJournal.add(record5);
+		arrayJournal.add(record4);
+		arrayJournal.add(record3);
+		arrayJournal.add(record11);
+		arrayJournal.add(record6);
+		arrayJournal.add(record7);
+		arrayJournal.add(record8);
+		arrayJournal.add(record1);
+		arrayJournal.add(record9);
+		arrayJournal.add(record10);
+
+		SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
+		Date date1 = null;
+		Date date2 = null;
+		try {
+			date2 = format.parse("2015-01-13 01:47:20");
+			date1 = format.parse("2013-11-25 01:40:20");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Journal j = arrayJournal.filter(date1,date2);
+		for(int i=0;i<j.size();i++){
+			Record tmpRecord = j.get(i);
+			Date tmpDate = tmpRecord.getDate();
+			assertTrue(tmpDate.compareTo(date1) >=0);
+			assertTrue(tmpDate.compareTo(date2) <=0);
+		}
+ 	}
+
+
+	@Test (expected = ArrayIndexOutOfBoundsException.class)
+	public void getExceptionTest() throws WrongInputDataException {
+		ArrayJournal arrayJournal = new ArrayJournal();
+		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
+		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
+		arrayJournal.add(record1);
+		arrayJournal.add(record2);
+		arrayJournal.get(5);
+	}
+
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void setExceptionTest() throws WrongInputDataException {
+		ArrayJournal arrayJournal = new ArrayJournal();
+		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
+		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
+		arrayJournal.add(record1);
+		arrayJournal.add(record2);
+		arrayJournal.set(3, record1);
+	}
+
+
+
 
 }

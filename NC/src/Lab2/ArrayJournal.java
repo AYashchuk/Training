@@ -3,6 +3,7 @@ package Lab2;
 import Lab2.comparators.DateComparator;
 import Lab2.comparators.ImportanceComparator;
 import Lab2.comparators.SourceComparator;
+import Lab2.exception.WrongInputDataException;
 import Lab2.filters.SimpleFilter;
 import Lab2.sorters.SimpleSorter;
 
@@ -74,7 +75,9 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public void add(Journal j) {
-
+		for(int i=0;i<j.size();i++){
+			add(j.get(i));
+		}
 	}
 
 	/**
@@ -183,7 +186,21 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public Journal filter(String s) {
-		return null;
+		Journal journal = new ArrayJournal<Record>();
+		Record record = null;
+		try {
+			record = new Record(s);
+		} catch (WrongInputDataException e) {
+			e.printStackTrace();
+			return  null;
+		}
+		for(int i=0;i<imageLength;i++){
+			Record tmpRecord = array[i];
+			if(tmpRecord.getSource().equals(record.getSource())){
+				journal.add(array[i]);
+			}
+		}
+		return journal;
 	}
 
 	/**
@@ -192,8 +209,19 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public Journal filter(Date fromDate, Date toDate) {
-
-		return null;
+		if(fromDate.compareTo(toDate)>0){
+			Date tmp = fromDate;
+			fromDate = toDate;
+			toDate = tmp;
+		}
+		Journal j = new ArrayJournal<Record>();
+		for(int i=0;i<imageLength;i++){
+			Record tmpRecord = array[i];
+			if(tmpRecord.getDate().compareTo(fromDate)>=0 && tmpRecord.getDate().compareTo(toDate)<=0){
+				j.add(array[i]);
+			}
+		}
+		return j;
 	}
 
 	/**
@@ -367,9 +395,5 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 				throw  new IllegalStateException();
 			}
 		}
-	}
-
-	public SimpleSorter getSimpleSorter() {
-		return simpleSorter;
 	}
 }
