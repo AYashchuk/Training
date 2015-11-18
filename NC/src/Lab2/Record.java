@@ -14,31 +14,34 @@ import java.util.regex.Pattern;
  * Overview:
  * @author Yashchuk A. F.
  * @version 1.0
- *
  */
 public final class Record {
-	/**  */
+	/** importance enum */
 	private Importance importance;
-	/**  */
+	/** view of importance */
 	private String view;
-	/**  */
+	/** annotation about record */
 	private String annotation;
-	/**  */
+	/** records source */
 	private String source;
-	/**  */
+	/** records date */
 	private Date date;
-	/**  */
+	/** message about record */
 	private String message;
-	/**  */
+	/** simple editor for date */
 	private SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
 
 
 	/**
 	 * Overview:
-	 *
+	 * base constructor with more important params
+	 * @param date - records date
+	 * @param importance records importance
+	 * @param source records source
+	 * @param message massage
 	 */
 	public Record(Date date, Importance importance, String source, String message) throws WrongInputDataException, UnknownImportanceStateException {
-		validateSourse(source);
+		validateSource(source);
 		validateAnnotation(message);
 		this.date = date;
 		this.importance = importance;
@@ -49,12 +52,20 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * constructor give on input String s and parse they for the same view which return method toString()
+	 * @param event - not parse record
+	 * @throws WrongInputDataException - throw if input string incorrect
 	 */
 	public Record(String event) throws WrongInputDataException {
 		if(!parseEvent(event)) throw  new WrongInputDataException("incorrect input data!");
 	}
 
+	/**
+	 * Overview:
+	 * This method parse input string to new Record
+	 * @param event - input string
+	 * @return tru - if method can create new Record, false if method cant parse input string
+	 */
 	private boolean parseEvent(String event)  {
 		String tmp [] = event.trim().split(" ");
 		if(tmp.length < 3){
@@ -80,7 +91,9 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method validate view
+	 * @param view input view
+	 * @return true if method can parse view, else - false
 	 */
 	private boolean validateAndInitView(String view) {
 		if(view.equals(".")){
@@ -101,7 +114,9 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * method init annotation and view according importance
+	 * @param importance it is current importance
+	 * @throws UnknownImportanceStateException - throw if importance cant find
 	 */
 	private void init(Importance importance) throws UnknownImportanceStateException {
 		switch (importance){
@@ -129,7 +144,9 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method validate annotation
+	 * @param annotation - current annotation
+	 * @throws WrongInputDataException - throw if annotation invalid
 	 */
 	private void validateAnnotation(String annotation) throws WrongInputDataException {
 		if(annotation.split("\n").length != 1 || annotation.split("\r").length != 1){
@@ -139,9 +156,11 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method validate source
+	 * @param source - current source
+     * @throws WrongInputDataException - throw if source invalid
 	 */
-	private void validateSourse(String source) throws WrongInputDataException {
+	private void validateSource(String source) throws WrongInputDataException {
 		if(source.split(" ").length != 1){
 			throw new WrongInputDataException("Source name must haven`t contains space!");
 		}
@@ -149,7 +168,9 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method validate date
+	 * @param date - current date
+	 * @return true if date valid
 	 */
 	private boolean validateDate(String date, String time){
 		String dateRegx = "(19|20)\\d\\d[- -.](0[1-9]|1[012])[- -.](0[1-9]|[12][0-9]|3[01])";
@@ -166,7 +187,7 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method prepare view
 	 */
 	private String prepareView(){
 		if(view.equals(".")){
@@ -208,7 +229,7 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method compare object with current record
 	 */
 	@Override
 	public boolean equals(Object o) {
@@ -226,7 +247,7 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method get hash code current record
 	 */
 	@Override
 	public int hashCode() {
@@ -238,7 +259,7 @@ public final class Record {
 
 	/**
 	 * Overview:
-	 *
+	 * Method views current record
 	 */
 	@Override
 	public String toString() {
@@ -246,13 +267,4 @@ public final class Record {
 				" " + prepareView() +
 				" " + source ;
 	}
-
-/*
-	static class YearComparator implements Comparator<Composition> {
-
-		@Override
-		public int compare(Composition o1, Composition o2) {
-			return o1.getYear().compareTo(o2.getYear());
-		}
-	}*/
 }

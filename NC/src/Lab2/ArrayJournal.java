@@ -4,7 +4,6 @@ import Lab2.comparators.DateComparator;
 import Lab2.comparators.ImportanceComparator;
 import Lab2.comparators.SourceComparator;
 import Lab2.exception.WrongInputDataException;
-import Lab2.filters.SimpleFilter;
 import Lab2.sorters.SimpleSorter;
 
 import java.util.Date;
@@ -18,22 +17,19 @@ import java.util.NoSuchElementException;
  * @author Yashchuk A. F.
  * @version 1.0
  * @see java.util.ArrayList
- *
  */
 public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
-	/**  */
+	/** Simple sorter for sort using different comparators */
 	private SimpleSorter simpleSorter = new SimpleSorter(new DateComparator(),new ImportanceComparator(),new SourceComparator());
-	/**  */
-	private SimpleFilter simpleFilter = new SimpleFilter(this);
-	/**  */
+	/** current array */
 	private Record[] array = new Record[11];
-	/**  */
+	/** image length of current array */
 	private int imageLength;
 
 
 	/**
 	 * Overview:
-	 * This method enlarge current array
+	 * This method enlarge current array if image seeks on array.length()
 	 */
 	private void enlargeArray() {
 		int length = array.length;
@@ -56,7 +52,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method add value {@link Lab2.Record} in journal{@link Lab2.Journal}
+	 * @param value - it is value that we would add
 	 */
 	@Override
 	public void add(Record value) {
@@ -71,7 +68,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method add journal {@link Lab2.Journal} in current journal{@link Lab2.Journal}
+	 * @param j - it is Journal {@link Lab2.Journal} which will based current journal
 	 */
 	@Override
 	public void add(Journal j) {
@@ -82,7 +80,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method remove Record {@link Lab2.Record} in current journal{@link Lab2.Journal}
+	 * @param r - it is Record value which we would remove from journal
 	 */
 	@Override
 	public void remove(Record r) {
@@ -95,8 +94,10 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
-	 * @throws java.lang.ArrayIndexOutOfBoundsException()
+	 * This method get Record {@link Lab2.Record} from current journal{@link Lab2.Journal}
+	 * @param index - it is index of which element we would get from journal
+	 * @return E - it is value Record{@link Lab2.Record} or his subclass
+	 * @throws java.lang.ArrayIndexOutOfBoundsException()- throw if invalid index
 	 */
 	public E get(int index) {
 		if (index < 0 || index >= imageLength) {
@@ -110,17 +111,21 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method insert Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * @param index - it is index of which position we would insert element in journal
+	 * @param  value - it is value which we would insert
 	 */
 	@Override
-	public void insert(int index, Record record) {
-		add(index,record);
+	public void insert(int index, Record value) {
+		add(index,value);
 	}
 
 	/**
 	 * Overview:
-	 *
-	 * @throws java.lang.IndexOutOfBoundsException
+	 * This method set Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * @param index - it is index of which position we would insert element in journal
+	 * @param  value - it is value which we would set
+	 * @throws java.lang.IndexOutOfBoundsException() - throw if invalid index
 	 */
 	@Override
 	public void set(int index, Record value) {
@@ -133,9 +138,10 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
-	 * @throws java.lang.IndexOutOfBoundsException
-	 *
+	 * This method add Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * @param index - it is index of which position we would insert element in journal
+	 * @param  value - it is value which we would insert
+	 * @throws java.lang.IndexOutOfBoundsException() - throw if invalid index
 	 */
 	public boolean add(int index, Record value) {
 		if (index < 0 || index > imageLength) {
@@ -161,7 +167,9 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method find Record {@link Lab2.Record} in current journal{@link Lab2.Journal}
+	 * @param  value - it is value which we would find
+	 * @return int value, if element had been find value it is index of find element, if element not find return -1
 	 */
 	public int indexOf(Record value) {
 		for (int i = 0; i < imageLength; i++) {
@@ -174,7 +182,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method return capacity current journal{@link Lab2.Journal}
+	 * @return imageLength
 	 */
 	public int size() {
 		return imageLength;
@@ -182,7 +191,10 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method compare source on Records which create on base String s
+	 * and return new Journal with the same source
+	 * @param s String value which based create Record
+	 * @return new Journal with the same source
 	 */
 	@Override
 	public Journal filter(String s) {
@@ -205,7 +217,10 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method compare source on Records which date is located in period of date
+	 * @param fromDate - start date period
+	 * @param toDate - end of date period
+	 * @return new Journal which date located in period of date
 	 */
 	@Override
 	public Journal filter(Date fromDate, Date toDate) {
@@ -226,7 +241,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method sort Journal by date
 	 */
 	@Override
 	public void sortByDate() {
@@ -235,7 +250,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method sort Journal by importance and date
 	 */
 	@Override
 	public void sortByImportanceDate() {
@@ -244,7 +259,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method sort Journal by importance, source and date
 	 */
 	@Override
 	public void sortByImportanceSourceDate() {
@@ -253,7 +268,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method sort Journal by source and date
 	 */
 	@Override
 	public void sortBySourceDate() {
@@ -262,7 +277,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method print all Records in Journal
 	 */
 	@Override
 	public void printRecords() {
@@ -275,7 +290,9 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method remove record on index
+	 * @param index - index which record must remove
+	 * @throws IndexOutOfBoundsException - throw if input index invalid
 	 */
 	@Override
 	public void remove(int index) {
@@ -294,7 +311,10 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method remove record in scope from index1 to index2
+	 * @param fromIndex first scope
+	 * @param toIndex second scope
+	 * @throws IndexOutOfBoundsException - throw if invalid scope
 	 */
 	@Override
 	public void remove(int fromIndex, int toIndex) {
@@ -308,7 +328,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * This method remove all elements in journal
 	 */
 	@Override
 	public void removeAll() {
@@ -319,7 +339,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 *
+	 * Method view journal
 	 */
 	@Override
 	public String toString() {
@@ -338,7 +358,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * My realization of simple iterator
+	 * My realization of simple iterator for journal
 	 * @see java.util.Iterator
 	 */
 	@Override
@@ -355,7 +375,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 		/**
 		 * Overview:
-		 *
+		 * enlarge courrent position of iterator
 		 */
 		@Override
 		public boolean hasNext() {
@@ -364,7 +384,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 		/**
 		 * Overview:
-		 *
+		 * return next element of iterator
+		 * @return next element
 		 * @throws java.util.NoSuchElementException
 		 */
 		@Override
@@ -377,7 +398,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 		/**
 		 * Overview:
-		 *
+		 * remove current element of iterator
 		 * @throws java.lang.IllegalStateException()
 		 */
 		@Override
