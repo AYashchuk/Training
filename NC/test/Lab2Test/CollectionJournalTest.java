@@ -1,6 +1,7 @@
 package Lab2Test;
 
 import Lab2.ArrayJournal;
+import Lab2.CollectionJournal;
 import Lab2.Journal;
 import Lab2.Record;
 import Lab2.exception.WrongInputDataException;
@@ -13,16 +14,16 @@ import java.util.Date;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 
-public class ArrayJournalTest {
+public class CollectionJournalTest {
 	@Test
 	public void creatingTest(){
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		assertEquals(arrayJournal.size(),0);
 	}
 
 	@Test
 	public void addTest1() throws WrongInputDataException {
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		arrayJournal.add(new Record("2015-11-13 01:47:20 !!!!  Tester"));
 		assertEquals(arrayJournal.size(), 1);
 	}
@@ -31,7 +32,7 @@ public class ArrayJournalTest {
 	public void addTest2() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		Record record = null;
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		for(int i=0;i<30;i++){
 			record = new Record(s + i);
 			arrayJournal.add(record);
@@ -41,15 +42,16 @@ public class ArrayJournalTest {
 
 
 	@Test
-		 public void addTest3() throws WrongInputDataException {
+	public void addTest3() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		Record record = null;
-		ArrayJournal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		for(int i=0;i<30;i++){
 			record = new Record(s + i);
 			arrayJournal.add(record);
 		}
-		arrayJournal.add(20,new Record(s + "20000"));
+		arrayJournal.insert(20,new Record(s + "20000"));
+		//arrayJournal.printRecords();
 		assertEquals(arrayJournal.size(), 31);
 	}
 
@@ -57,13 +59,13 @@ public class ArrayJournalTest {
 	public void addTest4() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		Record record = null;
-		ArrayJournal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		for(int i=0;i<30;i++){
 			record = new Record(s + i);
 			arrayJournal.add(record);
 		}
 		record = new Record(s + "20000");
-		arrayJournal.add(20,record);
+		arrayJournal.insert(20,record);
 		//arrayJournal.printRecords();
 		assertEquals(record, arrayJournal.get(20));
 		assertEquals(arrayJournal.size(), 31);
@@ -73,7 +75,7 @@ public class ArrayJournalTest {
 	public void addTest5() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		Record record = null;
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		for(int i=0;i<30;i++){
 			record = new Record(s + i);
 			arrayJournal.add(record);
@@ -84,25 +86,10 @@ public class ArrayJournalTest {
 	}
 
 	@Test
-	public void indexOfTest() throws WrongInputDataException {
-		String s = "2015-11-13 01:47:20 !!!!  Tester";
-		Record record = null;
-		ArrayJournal arrayJournal = new ArrayJournal();
-		for(int i=0;i<30;i++){
-			record = new Record(s + i);
-			arrayJournal.add(record);
-		}
-		record = new Record(s + "20000");
-		arrayJournal.add(30,record);
-		assertEquals(arrayJournal.indexOf(record), 30);
-		assertEquals(arrayJournal.size(), 31);
-	}
-
-	@Test
 	public void removeAllTest() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		Record record = null;
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		for(int i=0;i<30;i++){
 			record = new Record(s + i);
 			arrayJournal.add(record);
@@ -115,7 +102,7 @@ public class ArrayJournalTest {
 	public void removeTest1() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		Record record = null;
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		for(int i=0;i<30;i++){
 			record = new Record(s + i);
 			arrayJournal.add(record);
@@ -128,10 +115,10 @@ public class ArrayJournalTest {
 	}
 
 	@Test
-	 public void removeTest2() throws WrongInputDataException {
+	public void removeTest2() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
 		Record record = null;
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		for(int i=0;i<30;i++){
 			record = new Record(s + i);
 			arrayJournal.add(record);
@@ -143,9 +130,9 @@ public class ArrayJournalTest {
 
 
 	@Test
-	 public void sortByDateTest() throws WrongInputDataException {
+	public void sortByDateTest() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		Record record = new Record(s + "20000");
 		Record record1 = new Record("2014-10-09 01:47:20 !!!!  Tester");
 		Record record2 = new Record("2013-11-25 01:47:20 !!!!  Tester");
@@ -179,7 +166,7 @@ public class ArrayJournalTest {
 	@Test
 	public void sortByImportanceDateTest() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		Record record = new Record(s + "20000");
 		Record record1 = new Record("2014-10-09 01:47:20 !!!!  Tester");
 		Record record2 = new Record("2013-11-25 01:47:20 !!!   Tester");
@@ -219,7 +206,7 @@ public class ArrayJournalTest {
 	@Test
 	public void sortByImportanceSourceDateTest() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		Record record = new Record(s + "20000");
 		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
 		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
@@ -258,7 +245,7 @@ public class ArrayJournalTest {
 	@Test
 	public void filterTest1() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		Record record = new Record(s + "20000");
 		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
 		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
@@ -296,7 +283,7 @@ public class ArrayJournalTest {
 	@Test
 	public void filterTest2() throws WrongInputDataException {
 		String s = "2015-11-13 01:47:20 !!!!  Tester";
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		Record record = new Record(s + "20000");
 		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
 		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
@@ -339,22 +326,11 @@ public class ArrayJournalTest {
 			assertTrue(tmpDate.compareTo(date1) >=0);
 			assertTrue(tmpDate.compareTo(date2) <=0);
 		}
- 	}
-
-
-	@Test (expected = ArrayIndexOutOfBoundsException.class)
-	public void getExceptionTest() throws WrongInputDataException {
-		Journal arrayJournal = new ArrayJournal();
-		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
-		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
-		arrayJournal.add(record1);
-		arrayJournal.add(record2);
-		arrayJournal.get(5);
 	}
 
 	@Test (expected = IndexOutOfBoundsException.class)
 	public void setExceptionTest() throws WrongInputDataException {
-		Journal arrayJournal = new ArrayJournal();
+		Journal arrayJournal = new CollectionJournal();
 		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
 		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
 		arrayJournal.add(record1);
@@ -371,8 +347,4 @@ public class ArrayJournalTest {
 		arrayJournal.add(record2);
 		arrayJournal.add(3, record1);
 	}
-
-
-
-
 }

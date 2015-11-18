@@ -20,12 +20,31 @@ import java.util.NoSuchElementException;
  */
 public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	/** Simple sorter for sort using different comparators */
-	private SimpleSorter simpleSorter = new SimpleSorter(new DateComparator(),new ImportanceComparator(),new SourceComparator());
+	private SimpleSorter simpleSorter;
 	/** current array */
-	private Record[] array = new Record[11];
+	private Record[] array;
 	/** image length of current array */
 	private int imageLength;
 
+
+	/**
+	 * Overview:
+	 * Copy constructor
+	 * @param journal input journal which will be add to current journal
+	 */
+	public ArrayJournal(Journal journal) {
+		this.add(journal);
+	}
+
+	/**
+	 * Overview:
+	 * Empty constructor
+	 * create empty journal
+	 */
+	public ArrayJournal() {
+		this.array = new Record[11];
+		simpleSorter = new SimpleSorter(new DateComparator(),new ImportanceComparator(),new SourceComparator());
+	}
 
 	/**
 	 * Overview:
