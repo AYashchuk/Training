@@ -1,7 +1,7 @@
 package Lab2Test;
 
-import Lab2.Importance;
-import Lab2.Record;
+import Lab2.domain.Importance;
+import Lab2.domain.Record;
 import Lab2.exception.UnknownImportanceStateException;
 import Lab2.exception.WrongInputDataException;
 import org.junit.Test;

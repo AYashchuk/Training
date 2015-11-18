@@ -1,8 +1,8 @@
 package Lab2Test;
 
-import Lab2.ArrayJournal;
-import Lab2.Journal;
-import Lab2.Record;
+import Lab2.journals.ArrayJournal;
+import Lab2.journals.Journal;
+import Lab2.domain.Record;
 import Lab2.exception.WrongInputDataException;
 import org.junit.Test;
 

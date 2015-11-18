@@ -1,6 +1,6 @@
 package Lab2.comparators;
 
-import Lab2.Record;
+import Lab2.domain.Record;
 
 import java.util.Comparator;
 

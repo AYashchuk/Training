@@ -1,8 +1,8 @@
 package Lab2.sorters;
 
-import Lab2.ArrayJournal;
-import Lab2.Journal;
-import Lab2.Record;
+import Lab2.journals.ArrayJournal;
+import Lab2.journals.Journal;
+import Lab2.domain.Record;
 import Lab2.comparators.DateComparator;
 import Lab2.comparators.ImportanceComparator;
 import Lab2.comparators.SourceComparator;
@@ -13,7 +13,7 @@ import java.util.Comparator;
 /**
  * Overview:
  * This class sort objects how implements interface
- * Journal  {@link Lab2.Journal} by three types of sort.
+ * Journal  {@link Lab2.journals.Journal} by three types of sort.
  * He has some method of sort:
  * 1) sorting by date
  * 2) sorting by importance date

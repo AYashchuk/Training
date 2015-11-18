@@ -1,4 +1,4 @@
-package Lab2;
+package Lab2.domain;
 
 public enum Importance {
 	FIRST,

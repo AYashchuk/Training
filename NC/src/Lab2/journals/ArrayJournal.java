@@ -1,5 +1,6 @@
-package Lab2;
+package Lab2.journals;
 
+import Lab2.domain.Record;
 import Lab2.comparators.DateComparator;
 import Lab2.comparators.ImportanceComparator;
 import Lab2.comparators.SourceComparator;
@@ -71,7 +72,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method add value {@link Lab2.Record} in journal{@link Lab2.Journal}
+	 * This method add value {@link Lab2.Record} in journal{@link Journal}
 	 * @param value - it is value that we would add
 	 */
 	@Override
@@ -87,8 +88,8 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method add journal {@link Lab2.Journal} in current journal{@link Lab2.Journal}
-	 * @param j - it is Journal {@link Lab2.Journal} which will based current journal
+	 * This method add journal {@link Journal} in current journal{@link Journal}
+	 * @param j - it is Journal {@link Journal} which will based current journal
 	 */
 	@Override
 	public void add(Journal j) {
@@ -99,7 +100,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method remove Record {@link Lab2.Record} in current journal{@link Lab2.Journal}
+	 * This method remove Record {@link Lab2.Record} in current journal{@link Journal}
 	 * @param r - it is Record value which we would remove from journal
 	 */
 	@Override
@@ -113,7 +114,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method get Record {@link Lab2.Record} from current journal{@link Lab2.Journal}
+	 * This method get Record {@link Lab2.Record} from current journal{@link Journal}
 	 * @param index - it is index of which element we would get from journal
 	 * @return E - it is value Record{@link Lab2.Record} or his subclass
 	 * @throws java.lang.ArrayIndexOutOfBoundsException()- throw if invalid index
@@ -130,7 +131,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method insert Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * This method insert Record {@link Lab2.Record} in position index in current journal{@link Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  value - it is value which we would insert
 	 */
@@ -141,7 +142,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method set Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * This method set Record {@link Lab2.Record} in position index in current journal{@link Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  value - it is value which we would set
 	 * @throws java.lang.IndexOutOfBoundsException() - throw if invalid index
@@ -157,7 +158,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method add Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * This method add Record {@link Lab2.Record} in position index in current journal{@link Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  value - it is value which we would insert
 	 * @throws java.lang.IndexOutOfBoundsException() - throw if invalid index
@@ -186,7 +187,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method find Record {@link Lab2.Record} in current journal{@link Lab2.Journal}
+	 * This method find Record {@link Lab2.Record} in current journal{@link Journal}
 	 * @param  value - it is value which we would find
 	 * @return int value, if element had been find value it is index of find element, if element not find return -1
 	 */
@@ -201,7 +202,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method return capacity current journal{@link Lab2.Journal}
+	 * This method return capacity current journal{@link Journal}
 	 * @return imageLength
 	 */
 	public int size() {

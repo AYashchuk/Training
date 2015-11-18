@@ -1,4 +1,6 @@
-package Lab2;
+package Lab2.journals;
+
+import Lab2.domain.Record;
 
 import java.util.Date;
 

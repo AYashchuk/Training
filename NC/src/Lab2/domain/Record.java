@@ -1,4 +1,4 @@
-package Lab2;
+package Lab2.domain;
 
 import Lab2.exception.UnknownImportanceStateException;
 import Lab2.exception.WrongInputDataException;
@@ -54,7 +54,7 @@ public final class Record {
 	 * Overview:
 	 * constructor give on input String s and parse they for the same view which return method toString()
 	 * @param event - not parse record
-	 * @throws WrongInputDataException - throw if input string incorrect
+	 * @throws Lab2.exception.WrongInputDataException - throw if input string incorrect
 	 */
 	public Record(String event) throws WrongInputDataException {
 		if(!parseEvent(event)) throw  new WrongInputDataException("incorrect input data!");
@@ -116,7 +116,7 @@ public final class Record {
 	 * Overview:
 	 * method init annotation and view according importance
 	 * @param importance it is current importance
-	 * @throws UnknownImportanceStateException - throw if importance cant find
+	 * @throws Lab2.exception.UnknownImportanceStateException - throw if importance cant find
 	 */
 	private void init(Importance importance) throws UnknownImportanceStateException {
 		switch (importance){
@@ -146,7 +146,7 @@ public final class Record {
 	 * Overview:
 	 * Method validate annotation
 	 * @param annotation - current annotation
-	 * @throws WrongInputDataException - throw if annotation invalid
+	 * @throws Lab2.exception.WrongInputDataException - throw if annotation invalid
 	 */
 	private void validateAnnotation(String annotation) throws WrongInputDataException {
 		if(annotation.split("\n").length != 1 || annotation.split("\r").length != 1){
@@ -158,7 +158,7 @@ public final class Record {
 	 * Overview:
 	 * Method validate source
 	 * @param source - current source
-     * @throws WrongInputDataException - throw if source invalid
+     * @throws Lab2.exception.WrongInputDataException - throw if source invalid
 	 */
 	private void validateSource(String source) throws WrongInputDataException {
 		if(source.split(" ").length != 1){

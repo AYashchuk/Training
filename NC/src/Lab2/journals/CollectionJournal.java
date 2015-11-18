@@ -1,5 +1,6 @@
-package Lab2;
+package Lab2.journals;
 
+import Lab2.domain.Record;
 import Lab2.comparators.DateComparator;
 import Lab2.comparators.ImportanceComparator;
 import Lab2.comparators.SourceComparator;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CollectionJournal implements Journal{
+public class CollectionJournal implements Journal {
 
 	/** Simple sorter for sort using different comparators */
 	private SimpleSorter simpleSorter;
@@ -38,7 +39,7 @@ public class CollectionJournal implements Journal{
 
 	/**
 	 * Overview:
-	 * This method add value {@link Lab2.Record} in journal{@link Lab2.Journal}
+	 * This method add value {@link Lab2.Record} in journal{@link Lab2.journals.Journal}
 	 * @param r - it is value that we would add
 	 */
 	@Override
@@ -48,8 +49,8 @@ public class CollectionJournal implements Journal{
 
 	/**
 	 * Overview:
-	 * This method add journal {@link Lab2.Journal} in current journal{@link Lab2.Journal}
-	 * @param j - it is Journal {@link Lab2.Journal} which will based current journal
+	 * This method add journal {@link Lab2.journals.Journal} in current journal{@link Lab2.journals.Journal}
+	 * @param j - it is Journal {@link Lab2.journals.Journal} which will based current journal
 	 */
 	@Override
 	public void add(Journal j) {
@@ -60,7 +61,7 @@ public class CollectionJournal implements Journal{
 
 	/**
 	 * Overview:
-	 * This method remove Record {@link Lab2.Record} in current journal{@link Lab2.Journal}
+	 * This method remove Record {@link Lab2.Record} in current journal{@link Lab2.journals.Journal}
 	 * @param r - it is Record value which we would remove from journal
 	 */
 	@Override
@@ -70,7 +71,7 @@ public class CollectionJournal implements Journal{
 
 	/**
 	 * Overview:
-	 * This method get Record {@link Lab2.Record} from current journal{@link Lab2.Journal}
+	 * This method get Record {@link Lab2.Record} from current journal{@link Lab2.journals.Journal}
 	 * @param index - it is index of which element we would get from journal
 	 * @return Record - it is value Record{@link Lab2.Record} or his subclass
 	 */
@@ -81,7 +82,7 @@ public class CollectionJournal implements Journal{
 
 	/**
 	 * Overview:
-	 * This method set Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * This method set Record {@link Lab2.Record} in position index in current journal{@link Lab2.journals.Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  record - it is value which we would set
 	 */
@@ -92,7 +93,7 @@ public class CollectionJournal implements Journal{
 
 	/**
 	 * Overview:
-	 * This method add Record {@link Lab2.Record} in position index in current journal{@link Lab2.Journal}
+	 * This method add Record {@link Lab2.Record} in position index in current journal{@link Lab2.journals.Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  record - it is value which we would insert
 	 */
@@ -140,7 +141,7 @@ public class CollectionJournal implements Journal{
 
 	/**
 	 * Overview:
-	 * This method return capacity current journal{@link Lab2.Journal}
+	 * This method return capacity current journal{@link Lab2.journals.Journal}
 	 * @return - size of journal
 	 */
 	@Override
