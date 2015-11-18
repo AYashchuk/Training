@@ -362,6 +362,16 @@ public class ArrayJournalTest {
 		arrayJournal.set(3, record1);
 	}
 
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void addExceptionTest() throws WrongInputDataException {
+		ArrayJournal arrayJournal = new ArrayJournal();
+		Record record1 = new Record("2014-10-09 03:20:20 !!!!  Tester1");
+		Record record2 = new Record("2013-11-25 01:40:20 !!!   Tester2");
+		arrayJournal.add(record1);
+		arrayJournal.add(record2);
+		arrayJournal.add(3, record1);
+	}
+
 
 
 
