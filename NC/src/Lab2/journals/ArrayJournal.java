@@ -72,17 +72,17 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method add value {@link Lab2.Record} in journal{@link Journal}
+	 * This method add value {@link Lab2.domain.Record} in journal{@link Journal}
 	 * @param value - it is value that we would add
 	 */
 	@Override
 	public void add(Record value) {
-		if (array.length > imageLength) {  // если реальная длина масива больше мнимой, то споколйно добавляем елемент
-			array[imageLength] = value;
-		} else {
+		if (array.length <= imageLength * 3/4) {
 			enlargeArray();              // если же нет, то вызываем метод рашырения масива
-			array[imageLength] = value;// и спокойно добавляем новый елемент
 		}
+//		else {  // если реальная длина масива больше мнимой, то споколйно добавляем елемент
+//		}
+		array[imageLength] = value;
 		imageLength++;// увелииваем мнимую длину на единицу
 	}
 
@@ -100,7 +100,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method remove Record {@link Lab2.Record} in current journal{@link Journal}
+	 * This method remove Record {@link Lab2.domain.Record} in current journal{@link Journal}
 	 * @param r - it is Record value which we would remove from journal
 	 */
 	@Override
@@ -114,9 +114,9 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method get Record {@link Lab2.Record} from current journal{@link Journal}
+	 * This method get Record {@link Lab2.domain.Record} from current journal{@link Journal}
 	 * @param index - it is index of which element we would get from journal
-	 * @return E - it is value Record{@link Lab2.Record} or his subclass
+	 * @return E - it is value Record{@link Lab2.domain.Record} or his subclass
 	 * @throws java.lang.ArrayIndexOutOfBoundsException()- throw if invalid index
 	 */
 	public E get(int index) {
@@ -131,7 +131,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method insert Record {@link Lab2.Record} in position index in current journal{@link Journal}
+	 * This method insert Record {@link Lab2.domain.Record} in position index in current journal{@link Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  value - it is value which we would insert
 	 */
@@ -142,7 +142,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method set Record {@link Lab2.Record} in position index in current journal{@link Journal}
+	 * This method set Record {@link Lab2.domain.Record} in position index in current journal{@link Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  value - it is value which we would set
 	 * @throws java.lang.IndexOutOfBoundsException() - throw if invalid index
@@ -158,7 +158,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method add Record {@link Lab2.Record} in position index in current journal{@link Journal}
+	 * This method add Record {@link Lab2.domain.Record} in position index in current journal{@link Journal}
 	 * @param index - it is index of which position we would insert element in journal
 	 * @param  value - it is value which we would insert
 	 * @throws java.lang.IndexOutOfBoundsException() - throw if invalid index
@@ -187,7 +187,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 
 	/**
 	 * Overview:
-	 * This method find Record {@link Lab2.Record} in current journal{@link Journal}
+	 * This method find Record {@link Lab2.domain.Record} in current journal{@link Journal}
 	 * @param  value - it is value which we would find
 	 * @return int value, if element had been find value it is index of find element, if element not find return -1
 	 */

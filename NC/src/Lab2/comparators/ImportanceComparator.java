@@ -2,8 +2,6 @@ package Lab2.comparators;
 
 import Lab2.domain.Record;
 
-import java.util.Comparator;
-
 /**
  * Overview:
  * This is class - comparator for importance @see Lab2.Record
@@ -12,9 +10,9 @@ import java.util.Comparator;
  * @see java.util.Comparator
  *
  */
-public class ImportanceComparator implements Comparator <Record>{
+public class ImportanceComparator extends MyComparator {
 	@Override
-	public int compare(Record r1, Record r2) {
-		return r1.getImportance().compareTo(r2.getImportance());
+	protected int myCompair(Record record1, Record record2) {
+		return record1.getImportance().compareTo(record2.getImportance());
 	}
 }

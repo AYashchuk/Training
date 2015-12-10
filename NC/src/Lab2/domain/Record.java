@@ -67,7 +67,7 @@ public final class Record {
 	 * @return tru - if method can create new Record, false if method cant parse input string
 	 */
 	private boolean parseEvent(String event)  {
-		String tmp [] = event.trim().split(" ");
+		String tmp [] = event.trim().split("\\s+", 5);
 		if(tmp.length < 3){
 			System.out.println("event is short!");
 			return false;
