@@ -2,6 +2,8 @@ package Lab2.comparators;
 
 import Lab2.domain.Record;
 
+import java.util.Comparator;
+
 /**
  * Overview:
  * This is class - comparator for source @see Lab2.Record
@@ -11,6 +13,13 @@ import Lab2.domain.Record;
  *
  */
 public class SourceComparator extends MyComparator {
+
+	public SourceComparator() {
+	}
+
+	public SourceComparator(Comparator comparator) {
+		super(comparator);
+	}
 
 	@Override
 	protected int myCompair(Record record1, Record record2) {
