@@ -1,12 +1,13 @@
 package Lab2.journals;
 
-import Lab2.domain.Record;
 import Lab2.comparators.DateComparator;
 import Lab2.comparators.ImportanceComparator;
 import Lab2.comparators.SourceComparator;
+import Lab2.domain.Record;
 import Lab2.exception.WrongInputDataException;
 import Lab2.sorters.SimpleSorter;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -44,7 +45,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	public ArrayJournal() {
 		this.array = new Record[11];
-		simpleSorter = new SimpleSorter(new DateComparator(),new ImportanceComparator(),new SourceComparator());
+		simpleSorter = new SimpleSorter();
 	}
 
 	/**
@@ -265,7 +266,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public void sortByDate() {
-		simpleSorter.sortingByDate(this);
+		simpleSorter.sort(this, new DateComparator());
 	}
 
 	/**
@@ -274,7 +275,9 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public void sortByImportanceDate() {
-		simpleSorter.sortingByImportanceDate(this);
+		Comparator comparator =  new ImportanceComparator(new DateComparator());
+		//comparator.
+		simpleSorter.sort(this, new ImportanceComparator(new DateComparator()));
 	}
 
 	/**
@@ -283,7 +286,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public void sortByImportanceSourceDate() {
-		simpleSorter.sortingByImportanceSourceDate(this);
+		simpleSorter.sort(this, new ImportanceComparator(new SourceComparator(new DateComparator())));
 	}
 
 	/**
@@ -292,7 +295,7 @@ public class ArrayJournal <E extends Record> implements Iterable<E>, Journal {
 	 */
 	@Override
 	public void sortBySourceDate() {
-		simpleSorter.sortingBySourceDate(this);
+		simpleSorter.sort(this, new SourceComparator(new DateComparator()));
 	}
 
 	/**

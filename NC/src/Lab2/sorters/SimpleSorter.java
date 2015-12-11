@@ -1,11 +1,8 @@
 package Lab2.sorters;
 
+import Lab2.domain.Record;
 import Lab2.journals.ArrayJournal;
 import Lab2.journals.Journal;
-import Lab2.domain.Record;
-import Lab2.comparators.DateComparator;
-import Lab2.comparators.ImportanceComparator;
-import Lab2.comparators.SourceComparator;
 
 import java.util.Comparator;
 
@@ -25,93 +22,17 @@ import java.util.Comparator;
  *
  */
 public class SimpleSorter {
-	/** comparator for date */
-	private Comparator<Record> dateComparator = new DateComparator();
-	/** comparator for importance */
-	private Comparator <Record> importanceComparator = new ImportanceComparator();
-	/** comparator for source */
-	private Comparator <Record> sourceComparator = new SourceComparator();
-
-	public SimpleSorter(Comparator<Record> dateComparator, Comparator<Record> importanceComparator, Comparator<Record> sourceComparator) {
-		this.dateComparator = dateComparator;
-		this.importanceComparator = importanceComparator;
-		this.sourceComparator = sourceComparator;
-	}
-
 	/**
 	 * Overview:
 	 * Method sorting using bubble sort
 	 * @see Lab1.domain.BubbleSort
 	 *
 	 */
-	public void sortingByDate(Journal tmpArray) {
+	public void sort(Journal tmpArray, Comparator comparator) {
 		for(int i = 0; i < tmpArray.size()- 1; i++)
 			for(int j = 0; j < tmpArray.size() - i - 1; j++) {
-				if(dateComparator.compare(tmpArray.get(j),tmpArray.get(j+1))>0){
+				if(comparator.compare(tmpArray.get(j),tmpArray.get(j+1))>0){
 					swap(tmpArray,j,j+1);
-				}
-			}
-	}
-
-	/**
-	 * Overview:
-	 * Method sorting using bubble sort
-	 * @see Lab1.domain.BubbleSort
-	 *
-	 */
-	public void sortingByImportanceDate(Journal tmpArray) {
-		for(int i = 0; i < tmpArray.size()- 1; i++)
-			for(int j = 0; j < tmpArray.size() - i - 1; j++) {
-				if(importanceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) > 0){
-					swap(tmpArray,j,j+1);
-				}if(importanceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) == 0){
-					if(dateComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) > 0){
-						swap(tmpArray,j,j+1);
-					}
-				}
-			}
-	}
-
-
-	/**
-	 * Overview:
-	 * Method sorting using bubble sort
-	 * @see Lab1.domain.BubbleSort
-	 *
-	 */
-	public void sortingByImportanceSourceDate(Journal tmpArray) {
-		for(int i = 0; i < tmpArray.size()- 1; i++)
-			for(int j = 0; j < tmpArray.size() - i - 1; j++) {
-				if(importanceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) > 0){
-					swap(tmpArray,j,j+1);
-				}if(importanceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) == 0){
-					if(sourceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) > 0){
-						swap(tmpArray,j,j+1);
-					}if(sourceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) == 0){
-						if(dateComparator.compare(tmpArray.get(j),tmpArray.get(j+1))>0){
-							swap(tmpArray,j,j+1);
-						}
-					}
-				}
-			}
-	}
-
-
-	/**
-	 * Overview:
-	 * Method sorting using bubble sort
-	 * @see Lab1.domain.BubbleSort
-	 *
-	 */
-	public void sortingBySourceDate(Journal tmpArray){
-		for(int i = 0; i < tmpArray.size()- 1; i++)
-			for(int j = 0; j < tmpArray.size() - i - 1; j++) {
-				if(sourceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) > 0){
-					swap(tmpArray,j,j+1);
-				}if(sourceComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) == 0){
-					if(dateComparator.compare(tmpArray.get(j),tmpArray.get(j+1)) > 0){
-						swap(tmpArray,j,j+1);
-					}
 				}
 			}
 	}
